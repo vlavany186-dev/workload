@@ -1,0 +1,3047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raithu Work Connect - Find Nearby Farm Work. Know Your Wage.</title>
+  <meta name="description" content="Raithu Work Connect helps agricultural labourers in India easily find nearby farm jobs and know daily wages before travelling. Direct connection between farmers and rural workers.">
+
+  <!-- =========================================================================
+       SECTION 2: CSS STYLES (inside <style>)
+       Modern, responsive, mobile-friendly design using natural green, white,
+       and cream tones. Easy-to-use touch targets for rural agricultural workers.
+       Zero external dependencies or frameworks.
+       ========================================================================= -->
+  <style>
+    /* --- CSS RESET & ROOT COLOR VARIABLES --- */
+    :root {
+      /* Natural Agriculture Color Palette */
+      --color-primary: #1e5128;        /* Deep Agriculture Forest Green */
+      --color-primary-light: #2e7d32;  /* Fresh Crop Green */
+      --color-primary-dark: #113617;   /* Deep Dark Foliage */
+      --color-primary-soft: #eaf5eb;   /* Light Mint Green for subtle backgrounds */
+      --color-accent: #d97706;         /* Harvest Amber / Gold */
+      --color-accent-light: #fef3c7;   /* Soft Amber Highlight */
+      --color-bg-cream: #faf8f5;       /* Warm Rural Cream Canvas */
+      --color-card-bg: #ffffff;        /* Pure White for Cards */
+      --color-border: #d7e5d9;         /* Soft Greenish Border */
+      --color-border-hover: #81c784;   /* Active Border Highlight */
+      --color-text-main: #192a1e;      /* High-contrast Charcoal-Green */
+      --color-text-muted: #4b5e50;     /* Readable Subtitle Gray-Green */
+      --color-text-light: #6b7280;     /* Light Metadata Gray */
+      --color-danger: #dc2626;         /* Error & Alert Red */
+      --color-danger-soft: #fee2e2;    /* Soft Red Alert Background */
+      --color-success: #15803d;        /* Confirmation Green */
+      --color-success-soft: #dcfce7;   /* Confirmation Badge Background */
+
+      /* Typography & Elevation */
+      --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --shadow-sm: 0 1px 3px rgba(30, 81, 40, 0.08);
+      --shadow-md: 0 4px 14px rgba(30, 81, 40, 0.10);
+      --shadow-lg: 0 10px 28px rgba(30, 81, 40, 0.14);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-pill: 9999px;
+      --transition: all 0.22s ease-in-out;
+    }
+
+    /* Basic Box Model Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--color-bg-cream);
+      color: var(--color-text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Standard Layout Container */
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* --- DEMONSTRATION NOTICE BANNER --- */
+    .demo-notice-bar {
+      background: #fef3c7;
+      border-bottom: 1px solid #fde68a;
+      color: #92400e;
+      padding: 0.55rem 1rem;
+      font-size: 0.85rem;
+      text-align: center;
+      line-height: 1.4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .demo-notice-bar strong {
+      font-weight: 700;
+      color: #78350f;
+    }
+
+    .demo-pill {
+      background: #fde68a;
+      color: #78350f;
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    /* --- NAVIGATION HEADER --- */
+    .navbar {
+      background: #ffffff;
+      border-bottom: 2px solid var(--color-border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      gap: 1rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .brand-logo-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(30, 81, 40, 0.25);
+    }
+
+    .brand-text h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--color-primary-dark);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .brand-tagline {
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+      font-weight: 600;
+      display: block;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .lang-toggle-btn {
+      background: var(--color-primary-soft);
+      border: 1.5px solid var(--color-border);
+      color: var(--color-primary-dark);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: var(--transition);
+    }
+
+    .lang-toggle-btn:hover {
+      background: #d8ecd9;
+      border-color: var(--color-primary-light);
+    }
+
+    .nav-post-btn {
+      background: var(--color-primary);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.55rem 1.15rem;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 2px solid transparent;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .nav-post-btn:hover {
+      background: var(--color-primary-light);
+      box-shadow: 0 4px 10px rgba(30, 81, 40, 0.25);
+      transform: translateY(-1px);
+    }
+
+    /* --- HERO SECTION --- */
+    .hero-section {
+      background: linear-gradient(135deg, #1b4d24 0%, #256630 60%, #2e7d32 100%);
+      color: #ffffff;
+      padding: 3.25rem 1rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(6px);
+      padding: 0.35rem 0.9rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .hero-title {
+      font-size: clamp(1.9rem, 4.2vw, 3.1rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.22rem);
+      color: #e4f5e7;
+      margin-bottom: 2rem;
+      font-weight: 400;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.25rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.6rem;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+      border: 2px solid transparent;
+      user-select: none;
+    }
+
+    .btn-find-work {
+      background: #ffffff;
+      color: var(--color-primary-dark);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-find-work:hover {
+      background: #f7faf7;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-post-job {
+      background: var(--color-accent);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35);
+    }
+
+    .btn-post-job:hover {
+      background: #b45309;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(217, 119, 6, 0.45);
+    }
+
+    /* Hero Live Statistics Bar */
+    .hero-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.85rem;
+      max-width: 900px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .stat-box {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: #d1ead5;
+      font-weight: 600;
+      margin-top: 0.2rem;
+    }
+
+    /* --- "HOW IT WORKS" SECTION --- */
+    .how-section {
+      padding: 2.75rem 0 1.5rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .section-badge {
+      display: inline-block;
+      background: var(--color-primary-soft);
+      color: var(--color-primary-dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.25rem 0.8rem;
+      border-radius: var(--radius-pill);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--color-primary-dark);
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+      margin-top: 0.35rem;
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .how-card {
+      background: var(--color-card-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      position: relative;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .how-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+      border-color: var(--color-border-hover);
+    }
+
+    .how-step-badge {
+      width: 38px;
+      height: 38px;
+      background: var(--color-primary-soft);
+      color: var(--color-primary);
+      border: 2px solid var(--color-border-hover);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+    }
+
+    .how-card h3 {
+      font-size: 1.15rem;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .how-card p {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    /* --- SEARCH & FILTER CONTROLS PANEL --- */
+    .filter-section {
+      padding: 1.5rem 0 1rem;
+    }
+
+    .filter-panel {
+      background: #ffffff;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .filter-panel-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .filter-panel-title h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--color-primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-clear-filters {
+      background: transparent;
+      border: 1.5px solid #d1d5db;
+      color: var(--color-text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: var(--transition);
+    }
+
+    .btn-clear-filters:hover {
+      background: #f3f4f6;
+      border-color: #9ca3af;
+      color: var(--color-text-main);
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: 2fr 1.3fr 1.1fr 1.2fr;
+      gap: 1rem;
+      align-items: end;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--color-text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 0.85rem;
+      color: var(--color-text-light);
+      pointer-events: none;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-field, .select-field {
+      width: 100%;
+      padding: 0.7rem 0.85rem 0.7rem 2.4rem;
+      font-size: 0.95rem;
+      border: 1.5px solid #cbd5e1;
+      border-radius: var(--radius-md);
+      background: #ffffff;
+      color: var(--color-text-main);
+      outline: none;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .select-field {
+      padding-left: 2.4rem;
+      cursor: pointer;
+    }
+
+    .input-field:focus, .select-field:focus {
+      border-color: var(--color-primary-light);
+      box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
+    }
+
+    /* Category Quick Filter Pills */
+    .quick-categories {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--color-border);
+    }
+
+    .quick-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--color-text-muted);
+      margin-right: 0.25rem;
+    }
+
+    .cat-pill {
+      background: var(--color-bg-cream);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-main);
+      padding: 0.3rem 0.8rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      user-select: none;
+    }
+
+    .cat-pill:hover {
+      background: var(--color-primary-soft);
+      border-color: var(--color-primary-light);
+      color: var(--color-primary-dark);
+    }
+
+    .cat-pill.active {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(30, 81, 40, 0.2);
+    }
+
+    /* Active Filter Summary Bar */
+    .filter-summary-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 1.5rem 0 1rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .results-count {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+    }
+
+    .results-count span {
+      background: var(--color-primary-soft);
+      color: var(--color-primary-dark);
+      padding: 0.15rem 0.55rem;
+      border-radius: var(--radius-pill);
+      margin-right: 0.25rem;
+    }
+
+    /* --- JOB CARDS GRID --- */
+    .jobs-section {
+      padding-bottom: 3.5rem;
+      flex: 1;
+    }
+
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.35rem;
+    }
+
+    /* The Individual Job Card */
+    .job-card {
+      background: var(--color-card-bg);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 1.35rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .job-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-border-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Newly posted job highlight animation */
+    .job-card.highlight-new {
+      animation: pulseHighlight 2.5s ease-out;
+      border-color: var(--color-accent);
+    }
+
+    @keyframes pulseHighlight {
+      0% {
+        box-shadow: 0 0 0 6px rgba(217, 119, 6, 0.4);
+      }
+      100% {
+        box-shadow: var(--shadow-md);
+      }
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .job-category-tag {
+      background: var(--color-primary-soft);
+      color: var(--color-primary-dark);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      border: 1px solid #cce5cf;
+    }
+
+    .job-urgency-tag {
+      background: var(--color-accent-light);
+      color: #92400e;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
+    }
+
+    .job-title {
+      font-size: 1.18rem;
+      font-weight: 800;
+      color: var(--color-primary-dark);
+      line-height: 1.3;
+      margin-bottom: 0.45rem;
+    }
+
+    .job-location {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    /* Prominent Daily Wage Callout Box */
+    .wage-callout-box {
+      background: linear-gradient(135deg, #f4faf4, #e8f5e9);
+      border: 1.5px solid #c8e6c9;
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .wage-amount-group {
+      display: flex;
+      align-items: baseline;
+      gap: 0.25rem;
+    }
+
+    .wage-currency {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--color-primary);
+    }
+
+    .wage-number {
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: var(--color-primary);
+      line-height: 1;
+    }
+
+    .wage-unit {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      margin-left: 0.2rem;
+    }
+
+    .workers-needed-pill {
+      background: #ffffff;
+      border: 1.5px solid #a5d6a7;
+      color: var(--color-primary-dark);
+      padding: 0.3rem 0.65rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.82rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* Key Details Meta List */
+    .card-meta-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.86rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px dashed var(--color-border);
+    }
+
+    .meta-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-text-main);
+    }
+
+    .meta-row svg {
+      color: var(--color-primary-light);
+      flex-shrink: 0;
+    }
+
+    /* Provided Facilities Badges */
+    .facilities-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--color-text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.4rem;
+    }
+
+    .facilities-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+      min-height: 28px;
+    }
+
+    .facility-chip {
+      background: #f1f5f9;
+      color: #334155;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .facility-chip.active-chip {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+
+    /* Card Footer & Action Buttons */
+    .card-footer {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .farmer-info {
+      font-size: 0.82rem;
+      color: var(--color-text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .farmer-name {
+      font-weight: 700;
+      color: var(--color-primary-dark);
+    }
+
+    .card-actions-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.5rem;
+    }
+
+    .btn-call {
+      background: var(--color-primary);
+      color: #ffffff;
+      padding: 0.65rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-call:hover {
+      background: var(--color-primary-light);
+    }
+
+    .btn-whatsapp {
+      background: #25d366;
+      color: #ffffff;
+      padding: 0.65rem 0.85rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1eb954;
+    }
+
+    /* --- EMPTY STATE WHEN NO JOBS MATCH --- */
+    .empty-state {
+      background: #ffffff;
+      border: 2px dashed var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      grid-column: 1 / -1;
+      max-width: 600px;
+      margin: 1.5rem auto;
+    }
+
+    .empty-state-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+
+    .empty-state h3 {
+      font-size: 1.3rem;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.5rem;
+      font-weight: 800;
+    }
+
+    .empty-state p {
+      font-size: 0.92rem;
+      color: var(--color-text-muted);
+      margin-bottom: 1.5rem;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* --- FARMER "POST A JOB" FORM MODAL & SECTION --- */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(17, 54, 23, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-container {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 680px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      border: 2px solid var(--color-border);
+      animation: modalSlideUp 0.25s ease-out;
+    }
+
+    @keyframes modalSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .modal-header {
+      background: var(--color-primary-soft);
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1.5px solid var(--color-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .modal-title-group h2 {
+      font-size: 1.35rem;
+      color: var(--color-primary-dark);
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .modal-title-group p {
+      font-size: 0.82rem;
+      color: var(--color-text-muted);
+      margin-top: 0.2rem;
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--color-text-muted);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .modal-close-btn:hover {
+      background: #e2ede3;
+      color: var(--color-danger);
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+    }
+
+    /* Form Fields Styling */
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-grid-full {
+      margin-bottom: 1rem;
+    }
+
+    .field-required {
+      color: var(--color-danger);
+      font-weight: 800;
+      margin-left: 0.2rem;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 0.75rem 0.95rem;
+      font-size: 0.95rem;
+      border: 1.5px solid #cbd5e1;
+      border-radius: var(--radius-md);
+      background: #ffffff;
+      color: var(--color-text-main);
+      font-family: inherit;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--color-primary-light);
+      box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
+    }
+
+    .form-input.invalid, .form-select.invalid {
+      border-color: var(--color-danger);
+      background-color: #fffafb;
+    }
+
+    .field-error-msg {
+      color: var(--color-danger);
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-top: 0.25rem;
+      display: none;
+    }
+
+    .field-error-msg.visible {
+      display: block;
+    }
+
+    /* Facilities Checkboxes */
+    .facilities-fieldset {
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      margin-bottom: 1.25rem;
+      background: var(--color-bg-cream);
+    }
+
+    .facilities-legend {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      padding: 0 0.4rem;
+    }
+
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--color-text-main);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .checkbox-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--color-primary);
+      cursor: pointer;
+    }
+
+    .modal-footer {
+      padding: 1rem 1.5rem 1.5rem;
+      border-top: 1px solid #f1f5f9;
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      background: #fafafa;
+      border-bottom-left-radius: var(--radius-lg);
+      border-bottom-right-radius: var(--radius-lg);
+    }
+
+    .btn-cancel {
+      background: #e2e8f0;
+      color: #334155;
+    }
+
+    .btn-cancel:hover {
+      background: #cbd5e1;
+    }
+
+    .btn-submit-job {
+      background: var(--color-primary);
+      color: #ffffff;
+      padding: 0.75rem 1.8rem;
+    }
+
+    .btn-submit-job:hover {
+      background: var(--color-primary-light);
+    }
+
+    /* --- TOAST NOTIFICATION --- */
+    .toast-container {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      pointer-events: none;
+    }
+
+    .toast {
+      pointer-events: auto;
+      background: #ffffff;
+      color: var(--color-text-main);
+      border-left: 5px solid var(--color-success);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1.25rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: 300px;
+      max-width: 420px;
+      animation: toastIn 0.3s ease-out;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    @keyframes toastIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .toast-success {
+      border-left-color: var(--color-success);
+    }
+
+    .toast-error {
+      border-left-color: var(--color-danger);
+    }
+
+    .toast-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    /* --- FOOTER --- */
+    .site-footer {
+      background: #112816;
+      color: #d1ead5;
+      padding: 3rem 0 1.5rem;
+      margin-top: auto;
+      border-top: 3px solid var(--color-primary);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1.2fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-col h4 {
+      color: #ffffff;
+      font-size: 1.1rem;
+      margin-bottom: 0.85rem;
+      font-weight: 700;
+    }
+
+    .footer-col p {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: #b7d6bd;
+      margin-bottom: 0.85rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .footer-links a, .footer-links button {
+      color: #c9e4cf;
+      text-decoration: none;
+      font-size: 0.88rem;
+      background: none;
+      border: none;
+      padding: 0;
+      text-align: left;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover, .footer-links button:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #204427;
+      padding-top: 1.25rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #9abfa2;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    /* --- RESPONSIVE MEDIA QUERIES --- */
+    @media (max-width: 992px) {
+      .filter-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .how-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .hero-section {
+        padding: 2.25rem 1rem 2.75rem;
+      }
+      .hero-stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+        padding: 0.75rem;
+      }
+      .stat-number {
+        font-size: 1.35rem;
+      }
+      .filter-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .checkbox-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .jobs-grid {
+        grid-template-columns: 1fr;
+      }
+      .brand-tagline {
+        display: none;
+      }
+      .nav-inner {
+        padding: 0.5rem 0;
+      }
+      .toast {
+        min-width: unset;
+        width: calc(100vw - 2rem);
+      }
+      .toast-container {
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================================
+       SECTION 1: HTML STRUCTURE
+       Clean, accessible, semantic markup designed for rural labourers and farmers:
+       - Demonstration notice banner
+       - Header & brand navigation with language toggle and Post Job action
+       - Welcoming Hero section with live platform counters & action buttons
+       - "How It Works" 3-step guide for rural labourers
+       - Search, filter & sorting controls (Location, Work Type, Daily Wage)
+       - Dynamic agricultural job listings grid with prominent wage callouts
+       - Friendly empty state with one-click filter reset
+       - Farmer "Post a Farm Job" modal dialog with field validation
+       - Toast notifications container & accessible footer
+       ========================================================================= -->
+
+  <!-- 1. Demonstration Notice Banner -->
+  <aside class="demo-notice-bar" role="alert" aria-label="Demonstration Notice">
+    <span class="demo-pill" data-i18n="demo_badge">Demo Prototype</span>
+    <span data-i18n="demo_text">
+      <strong>Notice:</strong> Initial farm job listings are unverified demonstration data. Newly posted jobs are saved in your browser's local storage and are not shared between different devices.
+    </span>
+  </aside>
+
+  <!-- 2. Sticky Header & Navigation -->
+  <header class="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <!-- Logo / Brand Link -->
+        <a href="#home" class="brand-group" id="brandLink" title="Raithu Work Connect Home">
+          <div class="brand-logo-icon" aria-hidden="true">
+            <!-- Agricultural Sprout Icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 20h10"/>
+              <path d="M10 20c0-4.4 3.6-8 8-8V8c-4.4 0-8 3.6-8 8"/>
+              <path d="M14 20c0-6.6-5.4-12-12-12v4c4.4 0 8 3.6 8 8"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1 data-i18n="app_name">Raithu Work Connect</h1>
+            <span class="brand-tagline" data-i18n="app_tagline">Find Nearby Farm Work. Know Your Wage.</span>
+          </div>
+        </a>
+
+        <!-- Header Actions: Language Switch & Post Job Button -->
+        <div class="nav-actions">
+          <button class="lang-toggle-btn" id="langToggleBtn" type="button" title="Switch language between English and Telugu" aria-label="Toggle language">
+            🌐 <span id="langLabel">తెలుగు (Telugu)</span>
+          </button>
+          <button class="nav-post-btn" id="navPostJobBtn" type="button" aria-haspopup="dialog">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span data-i18n="nav_post_job">Post a Job</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 3. Welcoming Hero Section -->
+    <section class="hero-section" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span>🌾</span>
+            <span data-i18n="hero_pill">Direct Farm Labour Network • Zero Middlemen</span>
+          </div>
+          <h2 class="hero-title" data-i18n="hero_title">
+            Find Nearby Farm Work.<br>Know Your Wage.
+          </h2>
+          <p class="hero-subtitle" data-i18n="hero_desc">
+            Directly connect with local farmers in your village or district. View daily wages, work timings, and provided meals before travelling to the field.
+          </p>
+          <div class="hero-buttons">
+            <a href="#jobsListing" class="btn btn-find-work" id="heroFindWorkBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <span data-i18n="btn_find_work">Find Farm Work</span>
+            </a>
+            <button class="btn btn-post-job" id="heroPostJobBtn" type="button">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              <span data-i18n="btn_post_job">Post a Job (For Farmers)</span>
+            </button>
+          </div>
+
+          <!-- Live Dynamic Platform Statistics -->
+          <div class="hero-stats-grid" aria-label="Platform Statistics">
+            <div class="stat-box">
+              <div class="stat-number" id="statActiveJobs">0</div>
+              <div class="stat-label" data-i18n="stat_active_jobs">Available Jobs</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number" id="statWorkersNeeded">0</div>
+              <div class="stat-label" data-i18n="stat_workers_needed">Workers Needed</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number" id="statAvgWage">₹0</div>
+              <div class="stat-label" data-i18n="stat_avg_wage">Avg Daily Wage</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number" id="statVillagesCovered">0</div>
+              <div class="stat-label" data-i18n="stat_villages">Villages & Towns</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Simple "How It Works" Section -->
+    <section class="how-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge" data-i18n="how_badge">Simple 3-Step Process</span>
+          <h2 class="section-title" data-i18n="how_title">How Raithu Work Connect Works</h2>
+          <p class="section-subtitle" data-i18n="how_subtitle">Designed for simplicity so rural workers can secure daily wage work without hassle</p>
+        </div>
+        <div class="how-grid">
+          <div class="how-card">
+            <div class="how-step-badge">1</div>
+            <h3 data-i18n="how_step1_title">Search Nearby Work</h3>
+            <p data-i18n="how_step1_desc">Filter jobs by your village, mandal, or district. Select specific work like paddy transplanting, harvesting, weeding, or tractor plowing.</p>
+          </div>
+          <div class="how-card">
+            <div class="how-step-badge">2</div>
+            <h3 data-i18n="how_step2_title">Know Wage & Timings</h3>
+            <p data-i18n="how_step2_desc">Check the fixed daily wage in Indian Rupees (₹), working hours, and whether the farmer provides free lunch, drinking water, or transport.</p>
+          </div>
+          <div class="how-card">
+            <div class="how-step-badge">3</div>
+            <h3 data-i18n="how_step3_title">Direct Call & Confirmation</h3>
+            <p data-i18n="how_step3_desc">Click the green phone button to call the farmer directly. Agree on the work and arrive at the farm without middleman commission.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Search, Filter & Sort Section -->
+    <section class="filter-section" id="jobsListing">
+      <div class="container">
+        <div class="filter-panel">
+          <div class="filter-panel-title">
+            <h2>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+              </svg>
+              <span data-i18n="filter_heading">Search & Filter Farm Jobs</span>
+            </h2>
+            <button class="btn-clear-filters" id="resetFiltersBtn" type="button">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="1 4 1 10 7 10"></polyline>
+                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+              </svg>
+              <span data-i18n="btn_clear_filters">Clear All Filters</span>
+            </button>
+          </div>
+
+          <div class="filter-grid">
+            <!-- Location Search (Village / Town / District) -->
+            <div class="form-group">
+              <label class="form-label" for="searchLocation">
+                <span data-i18n="filter_lbl_location">Village, Town or District</span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-icon">📍</span>
+                <input
+                  type="text"
+                  id="searchLocation"
+                  class="input-field"
+                  placeholder="e.g. Guntur, Kothapalli, Warangal..."
+                  autocomplete="off"
+                >
+              </div>
+            </div>
+
+            <!-- Agricultural Work Type Filter -->
+            <div class="form-group">
+              <label class="form-label" for="filterCategory">
+                <span data-i18n="filter_lbl_category">Work Type</span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-icon">🌾</span>
+                <select id="filterCategory" class="select-field">
+                  <option value="ALL" data-i18n="opt_all_categories">All Agricultural Work</option>
+                  <option value="HARVESTING">Harvesting (Paddy / Crops)</option>
+                  <option value="TRANSPLANTING">Sowing & Transplanting (Natlu)</option>
+                  <option value="WEEDING">Weeding (Kalupu Theeyuta)</option>
+                  <option value="COTTON_PICKING">Cotton Picking (Patthi)</option>
+                  <option value="CHILLI_PICKING">Chilli / Vegetable Picking</option>
+                  <option value="TRACTOR_PLOWING">Tractor & Plowing (Dukki)</option>
+                  <option value="SPRAYING">Spraying & Fertilizing</option>
+                  <option value="GENERAL_LABOUR">General Farm Work</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Minimum Daily Wage Filter -->
+            <div class="form-group">
+              <label class="form-label" for="filterMinWage">
+                <span data-i18n="filter_lbl_min_wage">Min Daily Wage</span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-icon">₹</span>
+                <select id="filterMinWage" class="select-field">
+                  <option value="0" data-i18n="opt_any_wage">Any Wage (No Minimum)</option>
+                  <option value="400">₹400 / day & above</option>
+                  <option value="500">₹500 / day & above</option>
+                  <option value="600">₹600 / day & above</option>
+                  <option value="700">₹700 / day & above</option>
+                  <option value="800">₹800 / day & above</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Sort By Selector -->
+            <div class="form-group">
+              <label class="form-label" for="sortJobsBy">
+                <span data-i18n="filter_lbl_sort">Sort By</span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-icon">↕️</span>
+                <select id="sortJobsBy" class="select-field">
+                  <option value="date-asc" data-i18n="opt_sort_date_nearest">Work Date: Nearest First</option>
+                  <option value="wage-desc" data-i18n="opt_sort_wage_high">Wage: High to Low</option>
+                  <option value="wage-asc" data-i18n="opt_sort_wage_low">Wage: Low to High</option>
+                  <option value="workers-desc" data-i18n="opt_sort_workers_most">Workers Needed: Most First</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Category Filter Pills -->
+          <div class="quick-categories">
+            <span class="quick-label" data-i18n="quick_filter_lbl">Quick Category:</span>
+            <button class="cat-pill active" data-category="ALL" type="button">All Work</button>
+            <button class="cat-pill" data-category="HARVESTING" type="button">🌾 Harvesting</button>
+            <button class="cat-pill" data-category="TRANSPLANTING" type="button">🌱 Transplanting</button>
+            <button class="cat-pill" data-category="WEEDING" type="button">🌿 Weeding</button>
+            <button class="cat-pill" data-category="COTTON_PICKING" type="button">☁️ Cotton Picking</button>
+            <button class="cat-pill" data-category="CHILLI_PICKING" type="button">🌶️ Chilli Picking</button>
+            <button class="cat-pill" data-category="TRACTOR_PLOWING" type="button">🚜 Tractor Work</button>
+            <button class="cat-pill" data-category="SPRAYING" type="button">💧 Spraying</button>
+          </div>
+        </div>
+
+        <!-- Filter Results Bar -->
+        <div class="filter-summary-bar">
+          <div class="results-count">
+            <span id="filteredCount">0</span>
+            <span data-i18n="txt_jobs_found">Agricultural jobs available</span>
+          </div>
+          <div style="font-size: 0.85rem; color: var(--color-text-muted);">
+            💡 <span data-i18n="txt_tip">Click "Call Farmer" to speak directly with the land owner.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Available Agricultural Job Listings Grid -->
+    <section class="jobs-section">
+      <div class="container">
+        <!-- Dynamic Cards Container (rendered by JavaScript) -->
+        <div class="jobs-grid" id="jobsGridContainer" aria-live="polite">
+          <!-- Job cards will be inserted here dynamically -->
+        </div>
+
+        <!-- Friendly Empty State (shown if 0 jobs match) -->
+        <div class="empty-state" id="emptyJobsState" style="display: none;">
+          <div class="empty-state-icon">🌾</div>
+          <h3 data-i18n="empty_title">No Matching Farm Jobs Found</h3>
+          <p data-i18n="empty_desc">
+            We couldn't find any agricultural jobs matching your current search criteria. Try lowering the minimum wage, searching another village, or clearing your filters.
+          </p>
+          <button class="btn btn-find-work" id="emptyResetBtn" type="button">
+            <span data-i18n="btn_view_all_jobs">View All Available Jobs</span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       MODAL: FARMER "POST A FARM JOB" FORM
+       A clean, validated form allowing farmers to post work requirements.
+       Data is validated and saved to browser LocalStorage.
+       ========================================================================= -->
+  <div class="modal-overlay" id="postJobModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h2 id="modalTitle">
+            <span>🚜</span>
+            <span data-i18n="modal_post_title">Post a Farm Job</span>
+          </h2>
+          <p data-i18n="modal_post_subtitle">Hire agricultural labourers for harvesting, sowing, weeding, and crop care</p>
+        </div>
+        <button class="modal-close-btn" id="modalCloseBtn" type="button" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <form id="postJobForm" class="modal-body" novalidate>
+        <!-- 1. Job Title -->
+        <div class="form-grid-full">
+          <label class="form-label" for="inputJobTitle">
+            <span data-i18n="form_lbl_title">Job Title / Work Description</span>
+            <span class="field-required">*</span>
+          </label>
+          <input
+            type="text"
+            id="inputJobTitle"
+            class="form-input"
+            placeholder="e.g. Urgent: Paddy Harvesting for 4 Acres"
+            required
+          >
+          <div class="field-error-msg" id="errJobTitle">Please enter a clear job title (at least 4 characters).</div>
+        </div>
+
+        <!-- 2. Work Category & Daily Wage -->
+        <div class="form-grid-2">
+          <div>
+            <label class="form-label" for="inputCategory">
+              <span data-i18n="form_lbl_category">Agricultural Work Category</span>
+              <span class="field-required">*</span>
+            </label>
+            <select id="inputCategory" class="form-select" required>
+              <option value="">-- Select Work Category --</option>
+              <option value="HARVESTING">Paddy / Crop Harvesting</option>
+              <option value="TRANSPLANTING">Sowing & Transplanting</option>
+              <option value="WEEDING">Weeding (Field Cleaning)</option>
+              <option value="COTTON_PICKING">Cotton Picking</option>
+              <option value="CHILLI_PICKING">Chilli / Vegetable Picking</option>
+              <option value="TRACTOR_PLOWING">Tractor & Plowing Work</option>
+              <option value="SPRAYING">Spraying & Fertilizing</option>
+              <option value="GENERAL_LABOUR">General Farm Labour</option>
+            </select>
+            <div class="field-error-msg" id="errCategory">Please select a work category.</div>
+          </div>
+
+          <div>
+            <label class="form-label" for="inputDailyWage">
+              <span data-i18n="form_lbl_wage">Daily Wage (in ₹ Rupees)</span>
+              <span class="field-required">*</span>
+            </label>
+            <input
+              type="number"
+              id="inputDailyWage"
+              class="form-input"
+              placeholder="e.g. 600"
+              min="200"
+              max="5000"
+              step="50"
+              required
+            >
+            <div class="field-error-msg" id="errDailyWage">Please enter a valid daily wage between ₹200 and ₹5000.</div>
+          </div>
+        </div>
+
+        <!-- 3. Village/Town & District -->
+        <div class="form-grid-2">
+          <div>
+            <label class="form-label" for="inputVillage">
+              <span data-i18n="form_lbl_village">Village or Town</span>
+              <span class="field-required">*</span>
+            </label>
+            <input
+              type="text"
+              id="inputVillage"
+              class="form-input"
+              placeholder="e.g. Kothapalli"
+              required
+            >
+            <div class="field-error-msg" id="errVillage">Please enter your village or town name.</div>
+          </div>
+
+          <div>
+            <label class="form-label" for="inputDistrict">
+              <span data-i18n="form_lbl_district">District</span>
+              <span class="field-required">*</span>
+            </label>
+            <input
+              type="text"
+              id="inputDistrict"
+              class="form-input"
+              placeholder="e.g. Guntur"
+              required
+            >
+            <div class="field-error-msg" id="errDistrict">Please enter the district name.</div>
+          </div>
+        </div>
+
+        <!-- 4. Work Date & Number of Workers -->
+        <div class="form-grid-2">
+          <div>
+            <label class="form-label" for="inputWorkDate">
+              <span data-i18n="form_lbl_date">Work Date</span>
+              <span class="field-required">*</span>
+            </label>
+            <input
+              type="date"
+              id="inputWorkDate"
+              class="form-input"
+              required
+            >
+            <div class="field-error-msg" id="errWorkDate">Please select today or an upcoming work date.</div>
+          </div>
+
+          <div>
+            <label class="form-label" for="inputWorkersCount">
+              <span data-i18n="form_lbl_workers_count">Number of Workers Needed</span>
+              <span class="field-required">*</span>
+            </label>
+            <input
+              type="number"
+              id="inputWorkersCount"
+              class="form-input"
+              placeholder="e.g. 8"
+              min="1"
+              max="200"
+              required
+            >
+            <div class="field-error-msg" id="errWorkersCount">Please enter the number of workers needed (at least 1).</div>
+          </div>
+        </div>
+
+        <!-- 5. Working Hours & Farmer Phone -->
+        <div class="form-grid-2">
+          <div>
+            <label class="form-label" for="inputWorkingHours">
+              <span data-i18n="form_lbl_hours">Working Hours / Timings</span>
+              <span class="field-required">*</span>
+            </label>
+            <input
+              type="text"
+              id="inputWorkingHours"
+              class="form-input"
+              placeholder="e.g. 7:00 AM - 1:00 PM (Morning)"
+              required
+            >
+            <div class="field-error-msg" id="errWorkingHours">Please enter working hours (e.g. 7 AM - 1 PM).</div>
+          </div>
+
+          <div>
+            <label class="form-label" for="inputFarmerPhone">
+              <span data-i18n="form_lbl_phone">Contact Phone Number</span>
+              <span class="field-required">*</span>
+            </label>
+            <input
+              type="tel"
+              id="inputFarmerPhone"
+              class="form-input"
+              placeholder="e.g. 9848012345 (10 Digits)"
+              maxlength="10"
+              required
+            >
+            <div class="field-error-msg" id="errFarmerPhone">Please enter a valid 10-digit Indian mobile number.</div>
+          </div>
+        </div>
+
+        <!-- 6. Farmer / Landowner Name -->
+        <div class="form-grid-full">
+          <label class="form-label" for="inputFarmerName">
+            <span data-i18n="form_lbl_farmer_name">Farmer / Landowner Name</span>
+            <span class="field-required">*</span>
+          </label>
+          <input
+            type="text"
+            id="inputFarmerName"
+            class="form-input"
+            placeholder="e.g. K. Venkata Rama Rao"
+            required
+          >
+          <div class="field-error-msg" id="errFarmerName">Please enter the farmer or contact person name.</div>
+        </div>
+
+        <!-- 7. Facilities Provided (Checkboxes) -->
+        <fieldset class="facilities-fieldset">
+          <legend class="facilities-legend" data-i18n="form_legend_facilities">Facilities Provided (Optional)</legend>
+          <div class="checkbox-grid">
+            <label class="checkbox-label">
+              <input type="checkbox" id="facFood">
+              <span>🍛 Free Meal / Lunch (Bhojanam)</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="facWater">
+              <span>💧 Clean Drinking Water (Manchineeru)</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="facTransport">
+              <span>🚜 Transport / Pick-up Provided (Ravano)</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="facTools">
+              <span>✂️ Tools / Equipment Provided (Panimuttlu)</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- 8. Additional Instructions / Landmark -->
+        <div class="form-grid-full">
+          <label class="form-label" for="inputNotes">
+            <span data-i18n="form_lbl_notes">Landmark or Extra Notes (Optional)</span>
+          </label>
+          <textarea
+            id="inputNotes"
+            class="form-textarea"
+            rows="2"
+            placeholder="e.g. Near village water tank. Please arrive 15 minutes before 7:00 AM."
+          ></textarea>
+        </div>
+
+        <!-- Modal Action Buttons -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancel" id="modalCancelBtn" data-i18n="btn_cancel">Cancel</button>
+          <button type="submit" class="btn btn-submit-job" id="modalSubmitBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+              <polyline points="17 21 17 13 7 13 7 21"></polyline>
+              <polyline points="7 3 7 8 15 8"></polyline>
+            </svg>
+            <span data-i18n="btn_publish_job">Publish Farm Job</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 7. Floating Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="assertive"></div>
+
+  <!-- 8. Accessible Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4 data-i18n="footer_brand">🌾 Raithu Work Connect</h4>
+          <p data-i18n="footer_about">
+            Empowering agricultural labourers and village farmers across India with transparent daily wage discovery and direct work connections. Zero middleman commission.
+          </p>
+          <p style="font-size: 0.8rem; color: #a3c9a8;">
+            ⚠️ <strong>Technical note:</strong> Jobs are stored locally in your browser (LocalStorage). Clearing browser cache will restore initial demonstration listings.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footer_links_title">Quick Actions</h4>
+          <ul class="footer-links">
+            <li><a href="#jobsListing" data-i18n="footer_browse">Browse Farm Jobs</a></li>
+            <li><button type="button" id="footerPostJobBtn" data-i18n="footer_post">Post a Farm Job (Farmer)</button></li>
+            <li><button type="button" id="footerResetDemoBtn">🔄 Reset to Sample Demo Data</button></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footer_contact_title">Hackathon Prototype</h4>
+          <p data-i18n="footer_prototype_info">
+            Built with pure HTML, CSS, and vanilla JavaScript. Fully offline and local browser capable with zero external server dependencies.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; <span id="currentYear">2026</span> Raithu Work Connect. All rights reserved.</div>
+        <div>Built for Indian Agriculture • Farmer & Labourer Empowerment</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       SECTION 3: JAVASCRIPT LOGIC (inside <script>)
+       Clean, robust vanilla JavaScript with clear comments for first-year college
+       students. Handles LocalStorage data persistence, live search & filtering,
+       sorting, farmer job posting validation, and English/Telugu translations.
+       ========================================================================= -->
+  <script>
+    /* ==========================================================================
+       TABLE OF CONTENTS - JAVASCRIPT LOGIC
+       1. DATA DEFINITIONS & INITIAL SAMPLE JOBS (Demonstration Array)
+       2. TRANSLATION / i18n STRUCTURE (English & Telugu)
+       3. LOCAL STORAGE DATA PERSISTENCE (Loading & Saving)
+       4. SECURITY & SANITIZATION (Preventing HTML Injection / XSS)
+       5. SEARCH, FILTER & SORT ENGINE
+       6. DYNAMIC UI RENDERING (Job Cards & Platform Statistics)
+       7. FORM VALIDATION & FARMER JOB POSTING
+       8. NOTIFICATION TOAST UTILITY
+       9. EVENT LISTENERS & APPLICATION INITIALIZATION
+       ========================================================================== */
+
+    /* --------------------------------------------------------------------------
+       1. DATA DEFINITIONS & INITIAL SAMPLE JOBS
+       We define an array of realistic demonstration agricultural jobs.
+       Dates are dynamically offset relative to today so they always appear
+       upcoming (tomorrow, 2 days later, etc.) whenever the page is tested.
+       -------------------------------------------------------------------------- */
+    const STORAGE_KEY = 'raithu_work_connect_jobs_v1';
+    const LANG_STORAGE_KEY = 'raithu_preferred_lang_v1';
+
+    // Helper: Generate an ISO date string (YYYY-MM-DD) offset by N days from today
+    function getOffsetDate(daysOffset) {
+      const target = new Date();
+      target.setDate(target.getDate() + daysOffset);
+      const yyyy = target.getFullYear();
+      const mm = String(target.getMonth() + 1).padStart(2, '0');
+      const dd = String(target.getDate()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd}`;
+    }
+
+    // Default demonstration jobs array across major Indian agricultural districts
+    const INITIAL_SAMPLE_JOBS = [
+      {
+        id: 'job-101',
+        title: 'Urgent: Paddy Harvesting Workers Needed',
+        category: 'HARVESTING',
+        village: 'Kothapalli',
+        district: 'Guntur',
+        dailyWage: 650,
+        workDate: getOffsetDate(1), // Tomorrow
+        workersCount: 12,
+        workingHours: '7:00 AM - 1:30 PM (Morning Shift)',
+        farmerName: 'K. Venkata Rama Rao',
+        farmerPhone: '9848012345',
+        facilities: {
+          food: true,
+          water: true,
+          transport: false,
+          tools: true
+        },
+        notes: 'Paddy field located near the old Panchayat canal. Sickles provided if needed.',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: 'job-102',
+        title: 'Cotton Picking Labourers for 5 Acres Field',
+        category: 'COTTON_PICKING',
+        village: 'Narsampet',
+        district: 'Warangal',
+        dailyWage: 550,
+        workDate: getOffsetDate(2),
+        workersCount: 16,
+        workingHours: '7:30 AM - 2:00 PM',
+        farmerName: 'M. Sammaiah',
+        farmerPhone: '9440156789',
+        facilities: {
+          food: false,
+          water: true,
+          transport: true,
+          tools: true
+        },
+        notes: 'Free auto transport provided from Narsampet RTC bus stand at 7:00 AM.',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: 'job-103',
+        title: 'Paddy Transplanting (Natlu) Team Needed',
+        category: 'TRANSPLANTING',
+        village: 'Gudivada',
+        district: 'Krishna',
+        dailyWage: 600,
+        workDate: getOffsetDate(1),
+        workersCount: 10,
+        workingHours: '6:30 AM - 1:00 PM',
+        farmerName: 'V. Krishna Murthy',
+        farmerPhone: '9866023456',
+        facilities: {
+          food: true,
+          water: true,
+          transport: true,
+          tools: false
+        },
+        notes: 'Freshly prepared hot midday meal and butter milk provided for all workers.',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: 'job-104',
+        title: 'Red Chilli Harvesting & Sorting Workers',
+        category: 'CHILLI_PICKING',
+        village: 'Kalluru',
+        district: 'Khammam',
+        dailyWage: 520,
+        workDate: getOffsetDate(3),
+        workersCount: 20,
+        workingHours: '7:00 AM - 2:30 PM',
+        farmerName: 'B. Appa Rao',
+        farmerPhone: '9949034567',
+        facilities: {
+          food: false,
+          water: true,
+          transport: true,
+          tools: false
+        },
+        notes: 'Pickup vehicle leaves Kalluru center at 6:45 AM. Cash payment at end of day.',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: 'job-105',
+        title: 'Groundnut Field Weeding (Kalupu Theeyuta)',
+        category: 'WEEDING',
+        village: 'Dhone',
+        district: 'Kurnool',
+        dailyWage: 480,
+        workDate: getOffsetDate(2),
+        workersCount: 8,
+        workingHours: '7:00 AM - 1:00 PM',
+        farmerName: 'P. Chenna Reddy',
+        farmerPhone: '9701045678',
+        facilities: {
+          food: false,
+          water: true,
+          transport: false,
+          tools: true
+        },
+        notes: 'Light work, female and male labourers welcome. Cool drinking water at the field.',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: 'job-106',
+        title: 'Tractor Driver & Land Leveling Assistant',
+        category: 'TRACTOR_PLOWING',
+        village: 'Huzurabad',
+        district: 'Karimnagar',
+        dailyWage: 850,
+        workDate: getOffsetDate(1),
+        workersCount: 2,
+        workingHours: '6:00 AM - 2:00 PM',
+        farmerName: 'T. Srinivas',
+        farmerPhone: '9849156780',
+        facilities: {
+          food: true,
+          water: true,
+          transport: false,
+          tools: true
+        },
+        notes: 'Experience with rotavator and disc plow preferred. Lunch and tea provided.',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: 'job-107',
+        title: 'Mango Orchard Spraying & Maintenance',
+        category: 'SPRAYING',
+        village: 'Bangarupalem',
+        district: 'Chittoor',
+        dailyWage: 750,
+        workDate: getOffsetDate(3),
+        workersCount: 6,
+        workingHours: '6:30 AM - 12:30 PM (Half Day)',
+        farmerName: 'N. Mohan Naidu',
+        farmerPhone: '9440267891',
+        facilities: {
+          food: true,
+          water: true,
+          transport: true,
+          tools: true
+        },
+        notes: 'Protective masks and battery sprayers provided by orchard owner.',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: 'job-108',
+        title: 'Sugarcane Cutting & Bundle Loading',
+        category: 'HARVESTING',
+        village: 'Samalkota',
+        district: 'East Godavari',
+        dailyWage: 700,
+        workDate: getOffsetDate(2),
+        workersCount: 14,
+        workingHours: '6:30 AM - 1:30 PM',
+        farmerName: 'S. Satyanarayana',
+        farmerPhone: '9848278901',
+        facilities: {
+          food: true,
+          water: true,
+          transport: true,
+          tools: true
+        },
+        notes: 'Loading tractor trailers. Daily payment immediately after field weighing.',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: 'job-109',
+        title: 'Tomato & Vegetable Picking (Early Morning)',
+        category: 'CHILLI_PICKING',
+        village: 'Ibrahimpatnam',
+        district: 'Rangareddy',
+        dailyWage: 550,
+        workDate: getOffsetDate(1),
+        workersCount: 7,
+        workingHours: '6:00 AM - 12:00 PM',
+        farmerName: 'G. Yadaiah',
+        farmerPhone: '9703089012',
+        facilities: {
+          food: false,
+          water: true,
+          transport: true,
+          tools: true
+        },
+        notes: 'Picking tomatoes and packing in plastic crates. Early morning shift.',
+        createdAt: new Date().toISOString()
+      }
+    ];
+
+    // Global in-memory array holding all current jobs
+    let currentJobsList = [];
+
+    // Current selected language ('en' for English, 'te' for Telugu)
+    let currentLang = 'en';
+
+    /* --------------------------------------------------------------------------
+       2. TRANSLATION / i18n STRUCTURE
+       Structured key-value dictionary so the app can effortlessly toggle between
+       English and Telugu. This directly fulfills the requirement to prepare the
+       architecture for Telugu language support while offering a live demo switch.
+       Unicode escape sequences ensure 100% reliable rendering without encoding errors.
+       -------------------------------------------------------------------------- */
+    const I18N_DICTIONARY = {
+      en: {
+        app_name: 'Raithu Work Connect',
+        app_tagline: 'Find Nearby Farm Work. Know Your Wage.',
+        demo_badge: 'Demo Prototype',
+        demo_text: '<strong>Notice:</strong> Initial farm job listings are unverified demonstration data. Newly posted jobs are saved in your browser\'s local storage and are not shared between different devices.',
+        nav_post_job: 'Post a Job',
+        hero_pill: '🌾 Direct Farm Labour Network • Zero Middlemen',
+        hero_title: 'Find Nearby Farm Work.<br>Know Your Wage.',
+        hero_desc: 'Directly connect with local farmers in your village or district. View daily wages, work timings, and provided meals before travelling to the field.',
+        btn_find_work: 'Find Farm Work',
+        btn_post_job: 'Post a Job (For Farmers)',
+        stat_active_jobs: 'Available Jobs',
+        stat_workers_needed: 'Workers Needed',
+        stat_avg_wage: 'Avg Daily Wage',
+        stat_villages: 'Villages & Towns',
+        how_badge: 'Simple 3-Step Process',
+        how_title: 'How Raithu Work Connect Works',
+        how_subtitle: 'Designed for simplicity so rural workers can secure daily wage work without hassle',
+        how_step1_title: 'Search Nearby Work',
+        how_step1_desc: 'Filter jobs by your village, mandal, or district. Select specific work like paddy transplanting, harvesting, weeding, or tractor plowing.',
+        how_step2_title: 'Know Wage & Timings',
+        how_step2_desc: 'Check the fixed daily wage in Indian Rupees (₹), working hours, and whether the farmer provides free lunch, drinking water, or transport.',
+        how_step3_title: 'Direct Call & Confirmation',
+        how_step3_desc: 'Click the green phone button to call the farmer directly. Agree on the work and arrive at the farm without middleman commission.',
+        filter_heading: 'Search & Filter Farm Jobs',
+        btn_clear_filters: 'Clear All Filters',
+        filter_lbl_location: 'Village, Town or District',
+        filter_lbl_category: 'Work Type',
+        filter_lbl_min_wage: 'Min Daily Wage',
+        filter_lbl_sort: 'Sort By',
+        opt_all_categories: 'All Agricultural Work',
+        opt_any_wage: 'Any Wage (No Minimum)',
+        opt_sort_date_nearest: 'Work Date: Nearest First',
+        opt_sort_wage_high: 'Wage: High to Low',
+        opt_sort_wage_low: 'Wage: Low to High',
+        opt_sort_workers_most: 'Workers Needed: Most First',
+        quick_filter_lbl: 'Quick Category:',
+        txt_jobs_found: 'Agricultural jobs available',
+        txt_tip: 'Click "Call Farmer" to speak directly with the land owner.',
+        empty_title: 'No Matching Farm Jobs Found',
+        empty_desc: 'We couldn\'t find any agricultural jobs matching your current search criteria. Try lowering the minimum wage, searching another village, or clearing your filters.',
+        btn_view_all_jobs: 'View All Available Jobs',
+        modal_post_title: 'Post a Farm Job',
+        modal_post_subtitle: 'Hire agricultural labourers for harvesting, sowing, weeding, and crop care',
+        form_lbl_title: 'Job Title / Work Description',
+        form_lbl_category: 'Agricultural Work Category',
+        form_lbl_wage: 'Daily Wage (in ₹ Rupees)',
+        form_lbl_village: 'Village or Town',
+        form_lbl_district: 'District',
+        form_lbl_date: 'Work Date',
+        form_lbl_workers_count: 'Number of Workers Needed',
+        form_lbl_hours: 'Working Hours / Timings',
+        form_lbl_phone: 'Contact Phone Number',
+        form_lbl_farmer_name: 'Farmer / Landowner Name',
+        form_legend_facilities: 'Facilities Provided (Optional)',
+        form_lbl_notes: 'Landmark or Extra Notes (Optional)',
+        btn_cancel: 'Cancel',
+        btn_publish_job: 'Publish Farm Job',
+        footer_brand: '🌾 Raithu Work Connect',
+        footer_about: 'Empowering agricultural labourers and village farmers across India with transparent daily wage discovery and direct work connections. Zero middleman commission.',
+        footer_links_title: 'Quick Actions',
+        footer_browse: 'Browse Farm Jobs',
+        footer_post: 'Post a Farm Job (Farmer)',
+        footer_contact_title: 'Hackathon Prototype',
+        footer_prototype_info: 'Built with pure HTML, CSS, and vanilla JavaScript. Fully offline and local browser capable with zero external server dependencies.'
+      },
+      te: {
+        app_name: '\u0C30\u0C48\u0C24\u0C41 \u0C35\u0C30\u0C4D\u0C15\u0C4D \u0C15\u0C28\u0C46\u0C15\u0C4D\u0C1F', // రైతు వర్క్ కనెక్ట్
+        app_tagline: '\u0C38\u0C2E\u0C40\u0C2A \u0C35\u0C4D\u0C2F\u0C35\u0C38\u0C3E\u0C2F \u0C2A\u0C28\u0C41\u0C32\u0C28\u0C41 \u0C15\u0C28\u0C41\u0C17\u0C4A\u0C28\u0C02\u0C21\u0C3F. \u0C2E\u0C40 \u0C15\u0C42\u0C32\u0C40 \u0C2E\u0C41\u0C02\u0C26\u0C47 \u0C24\u0C46\u0C32\u0C41\u0C38\u0C41\u0C15\u0C4B\u0C02\u0C21\u0C3F.',
+        demo_badge: '\u0C21\u0C46\u0C2E\u0C4B \u0C2A\u0C4D\u0C30\u0C4B\u0C1F\u0C4B\u0C1F\u0C48\u0C2A\u0C4D',
+        demo_text: '<strong>\u0C17\u0C2E\u0C28\u0C3F\u0C15:</strong> \u0C07\u0C35\u0C3F \u0C21\u0C46\u0C2E\u0C4B \u0C15\u0C4A\u0C30\u0C15\u0C41 \u0C1A\u0C42\u0C2A\u0C3F\u0C02\u0C1A\u0C2C\u0C21\u0C41\u0C24\u0C41\u0C28\u0C4D\u0C28 \u0C35\u0C4D\u0C2F\u0C35\u0C38\u0C3E\u0C2F \u0C2A\u0C28\u0C41\u0C32 \u0C35\u0C3F\u0C35\u0C30\u0C3E\u0C32\u0C41. \u0C15\u0C4A\u0C24\u0C4D\u0C24\u0C17\u0C3E \u0C28\u0C2E\u0C4B\u0C26\u0C41 \u0C1A\u0C47\u0C38\u0C3F\u0C28 \u0C2A\u0C28\u0C41\u0C32\u0C41 \u0C2E\u0C40 \u0C2C\u0C4D\u0C30\u0C4C\u0C1C\u0C30\u0C4D \u0C32\u0C4B\u0C15\u0C32\u0C4D \u0C38\u0C4D\u0C1F\u0C4B\u0C30\u0C47\u0C1C\u0C4D\u200C\u0C32\u0C4B \u0C2E\u0C3E\u0C24\u0C4D\u0C30\u0C2E\u0C47 \u0C2D\u0C26\u0C4D\u0C30\u0C2A\u0C30\u0C1A\u0C2C\u0C21\u0C24\u0C3E\u0C2F\u0C3F.',
+        nav_post_job: '\u0C2A\u0C28\u0C3F\u0C28\u0C3F \u0C28\u0C2E\u0C4B\u0C26\u0C41 \u0C1A\u0C47\u0C2F\u0C02\u0C21\u0C3F',
+        hero_pill: '🌾 \u0C2A\u0C4D\u0C30\u0C24\u0C4D\u0C2F\u0C15\u0C4D\u0C37 \u0C35\u0C4D\u0C2F\u0C35\u0C38\u0C3E\u0C2F \u0C15\u0C42\u0C32\u0C40 \u0C28\u0C46\u0C1F\u0C4D\u200C\u0C35\u0C30\u0C4D\u0C15\u0C4D \u2022 \u0C26\u0C33\u0C3E\u0C30\u0C41\u0C32\u0C41 \u0C32\u0C47\u0C30\u0C41',
+        hero_title: '\u0C26\u0C17\u0C4D\u0C17\u0C30\u0C32\u0C4B\u0C28\u0C3F \u0C35\u0C4D\u0C2F\u0C35\u0C38\u0C3E\u0C2F \u0C2A\u0C28\u0C3F.<br>\u0C2E\u0C41\u0C02\u0C26\u0C47 \u0C24\u0C46\u0C32\u0C3F\u0C38\u0C47 \u0C15\u0C42\u0C32\u0C40.',
+        hero_desc: '\u0C2E\u0C40 \u0C17\u0C4D\u0C30\u0C3E\u0C2E\u0C02 \u0C32\u0C47\u0C26\u0C3E \u0C1C\u0C3F\u0C32\u0C4D\u0C32\u0C3E\u0C32\u0C4B\u0C28\u0C3F \u0C30\u0C48\u0C24\u0C41\u0C32\u0C24\u0C4B \u0C28\u0C47\u0C30\u0C41\u0C17\u0C3E \u0C2E\u0C3E\u0C1F\u0C4D\u0C32\u0C3E\u0C21\u0C02\u0C21\u0C3F. \u0C2A\u0C4A\u0C32\u0C3E\u0C28\u0C3F\u0C15\u0C3F \u0C35\u0C46\u0C33\u0C4D\u0C33\u0C47 \u0C2E\u0C41\u0C02\u0C26\u0C47 \u0C30\u0C4B\u0C1C\u0C41\u0C35\u0C3E\u0C30\u0C40 \u0C15\u0C42\u0C32\u0C40, \u0C2A\u0C28\u0C3F \u0C35\u0C47\u0C33\u0C32\u0C41 \u0C24\u0C46\u0C32\u0C41\u0C38\u0C41\u0C15\u0C4B\u0C02\u0C21\u0C3F.',
+        btn_find_work: '\u0C35\u0C4D\u0C2F\u0C35\u0C38\u0C3E\u0C2F \u0C2A\u0C28\u0C41\u0C32\u0C41 \u0C1A\u0C42\u0C21\u0C02\u0C21\u0C3F',
+        btn_post_job: '\u0C30\u0C48\u0C24\u0C41 \u0C2A\u0C28\u0C3F\u0C28\u0C3F \u0C28\u0C2E\u0C4B\u0C26\u0C41 \u0C1A\u0C47\u0C2F\u0C02\u0C21\u0C3F',
+        stat_active_jobs: '\u0C05\u0C02\u0C26\u0C41\u0C2C\u0C3E\u0C1F\u0C41 \u0C2A\u0C28\u0C41\u0C32\u0C41',
+        stat_workers_needed: '\u0C15\u0C3E\u0C35\u0C32\u0C38\u0C3F\u0C28 \u0C15\u0C42\u0C32\u0C40\u0C32\u0C41',
+        stat_avg_wage: '\u0C38\u0C17\u0C1F\u0C41 \u0C30\u0C4B\u0C1C\u0C41\u0C35\u0C3E\u0C30\u0C40 \u0C15\u0C42\u0C32\u0C40',
+        stat_villages: '\u0C17\u0C4D\u0C30\u0C3E\u0C2E\u0C3E\u0C32\u0C41 & \u0C2A\u0C1F\u0C4D\u0C1F\u0C23\u0C3E\u0C32\u0C41',
+        how_badge: '\u0C38\u0C41\u0C32\u0C2D\u0C2E\u0C48\u0C28 3 \u0C26\u0C36\u0C32\u0C41',
+        how_title: '\u0C30\u0C48\u0C24\u0C41 \u0C35\u0C30\u0C4D\u0C15\u0C4D \u0C15\u0C28\u0C46\u0C15\u0C4D\u0C1F \u0C0E\u0C32\u0C3E \u0C2A\u0C28\u0C3F\u0C1A\u0C47\u0C38\u0C4D\u0C24\u0C41\u0C02\u0C26\u0C3F?',
+        how_subtitle: '\u0C17\u0C4D\u0C30\u0C3E\u0C2E\u0C40\u0C23 \u0C15\u0C42\u0C32\u0C40\u0C32 \u0C38\u0C4C\u0C32\u0C2D\u0C4D\u0C2F\u0C02 \u0C15\u0C4B\u0C38\u0C02 \u0C30\u0C42\u0C2A\u0C4A\u0C02\u0C26\u0C3F\u0C02\u0C1A\u0C2C\u0C21\u0C3F\u0C02\u0C26\u0C3F',
+        how_step1_title: '\u0C38\u0C2E\u0C40\u0C2A \u0C2A\u0C28\u0C3F\u0C28\u0C3F \u0C35\u0C46\u0C24\u0C15\u0C02\u0C21\u0C3F',
+        how_step1_desc: '\u0C2E\u0C40 \u0C17\u0C4D\u0C30\u0C3E\u0C2E\u0C02 \u0C32\u0C47\u0C26\u0C3E \u0C1C\u0C3F\u0C32\u0C4D\u0C32\u0C3E \u0C2A\u0C47\u0C30\u0C41\u0C24\u0C4B \u0C35\u0C46\u0C24\u0C15\u0C02\u0C21\u0C3F. \u0C35\u0C30\u0C3F \u0C15\u0C4B\u0C24, \u0C28\u0C3E\u0C1F\u0C4D\u0C32\u0C41, \u0C15\u0C32\u0C41\u0C2A\u0C41 \u0C24\u0C40\u0C24 \u0C0E\u0C02\u0C1A\u0C41\u0C15\u0C4B\u0C02\u0C21\u0C3F.',
+        how_step2_title: '\u0C15\u0C42\u0C32\u0C40 & \u0C38\u0C2E\u0C2F\u0C02 \u0C24\u0C46\u0C32\u0C41\u0C38\u0C41\u0C15\u0C4B\u0C02\u0C21\u0C3F',
+        how_step2_desc: '\u0C30\u0C4B\u0C1C\u0C41\u0C35\u0C3E\u0C30\u0C40 \u0C15\u0C42\u0C32\u0C40, \u0C2A\u0C28\u0C3F \u0C35\u0C47\u0C33\u0C32\u0C41, \u0C30\u0C48\u0C24\u0C41 \u0C2D\u0C4B\u0C1C\u0C28\u0C02 \u0C07\u0C38\u0C4D\u0C24\u0C41\u0C28\u0C4D\u0C28\u0C3E\u0C30\u0C4B \u0C32\u0C47\u0C26\u0C4B \u0C1A\u0C42\u0C21\u0C02\u0C21\u0C3F.',
+        how_step3_title: '\u0C30\u0C48\u0C24\u0C41\u0C24\u0C4B \u0C28\u0C47\u0C30\u0C41\u0C17\u0C3E \u0C2E\u0C3E\u0C1F\u0C4D\u0C32\u0C3E\u0C21\u0C02\u0C21\u0C3F',
+        how_step3_desc: '\u0C15\u0C3E\u0C32\u0C4D \u0C2C\u0C1F\u0C28\u0C4D \u0C28\u0C4A\u0C15\u0C4D\u0C15\u0C3F \u0C30\u0C48\u0C24\u0C41\u0C15\u0C41 \u0C28\u0C47\u0C30\u0C41\u0C17\u0C3E \u0C2B\u0C4B\u0C28\u0C4D \u0C1A\u0C47\u0C2F\u0C02\u0C21\u0C3F. \u0C1C\u0C40\u0C30\u0C4B \u0C15\u0C2E\u0C40\u0C37\u0C28\u0C4D.',
+        filter_heading: '\u0C2A\u0C28\u0C41\u0C32\u0C28\u0C41 \u0C35\u0C46\u0C24\u0C15\u0C02\u0C21\u0C3F & \u0C2B\u0C3F\u0C32\u0C4D\u0C1F\u0C30\u0C4D \u0C1A\u0C47\u0C2F\u0C02\u0C21\u0C3F',
+        btn_clear_filters: '\u0C2B\u0C3F\u0C32\u0C4D\u0C1F\u0C30\u0C4D\u0C32\u0C28\u0C41 \u0C24\u0C4A\u0C32\u0C17\u0C3F\u0C02\u0C1A\u0C02\u0C21\u0C3F',
+        filter_lbl_location: '\u0C17\u0C4D\u0C30\u0C3E\u0C2E\u0C02, \u0C2A\u0C1F\u0C4D\u0C1F\u0C23\u0C02 \u0C32\u0C47\u0C26\u0C3E \u0C1C\u0C3F\u0C32\u0C4D\u0C32\u0C3E',
+        filter_lbl_category: '\u0C2A\u0C28\u0C3F \u0C30\u0C15\u0C02',
+        filter_lbl_min_wage: '\u0C15\u0C28\u0C40\u0C38 \u0C30\u0C4B\u0C1C\u0C41\u0C35\u0C3E\u0C30\u0C40 \u0C15\u0C42\u0C32\u0C40',
+        filter_lbl_sort: '\u0C15\u0C4D\u0C30\u0C2E\u0C2C\u0C26\u0C4D\u0C27\u0C40\u0C15\u0C30\u0C23',
+        opt_all_categories: '\u0C05\u0C28\u0C4D\u0C28\u0C3F \u0C35\u0C4D\u0C2F\u0C35\u0C38\u0C3E\u0C2F \u0C2A\u0C28\u0C41\u0C32\u0C41',
+        opt_any_wage: '\u0C0E\u0C02\u0C24 \u0C15\u0C42\u0C32\u0C40 \u0C05\u0C2F\u0C3F\u0C28\u0C3E \u0C2A\u0C30\u0C4D\u0C35\u0C3E\u0C32\u0C47\u0C26\u0C41',
+        opt_sort_date_nearest: '\u0C2A\u0C28\u0C3F \u0C24\u0C47\u0C26\u0C40: \u0C24\u0C4D\u0C35\u0C30\u0C32\u0C4B \u0C09\u0C28\u0C4D\u0C28\u0C35\u0C3F \u0C2E\u0C4A\u0C26\u0C1F',
+        opt_sort_wage_high: '\u0C15\u0C42\u0C32\u0C40: \u0C0E\u0C15\u0C4D\u0C15\u0C41\u0C35 \u0C28\u0C41\u0C02\u0C21\u0C3F \u0C24\u0C15\u0C4D\u0C15\u0C41\u0C35',
+        opt_sort_wage_low: '\u0C15\u0C42\u0C32\u0C40: \u0C24\u0C15\u0C4D\u0C15\u0C41\u0C35 \u0C28\u0C41\u0C02\u0C21\u0C3F \u0C0E\u0C15\u0C4D\u0C15\u0C41\u0C35',
+        opt_sort_workers_most: '\u0C0E\u0C15\u0C4D\u0C15\u0C41\u0C35 \u0C2E\u0C02\u0C26\u0C3F \u0C15\u0C42\u0C32\u0C40\u0C32\u0C41 \u0C15\u0C3E\u0C35\u0C32\u0C38\u0C3F\u0C28\u0C35\u0C3F',
+        quick_filter_lbl: '\u0C24\u0C4D\u0C35\u0C30\u0C3F\u0C24 \u0C35\u0C30\u0C4D\u0C17\u0C02:',
+        txt_jobs_found: '\u0C35\u0C4D\u0C2F\u0C35\u0C38\u0C3E\u0C2F \u0C2A\u0C28\u0C41\u0C32\u0C41 \u0C05\u0C02\u0C26\u0C41\u0C2C\u0C3E\u0C1F\u0C41\u0C32\u0C4B \u0C09\u0C28\u0C4D\u0C28\u0C3E\u0C2F\u0C3F',
+        txt_tip: '\u0C30\u0C48\u0C24\u0C41\u0C24\u0C4B \u0C28\u0C47\u0C30\u0C41\u0C17\u0C3E \u0C2E\u0C3E\u0C1F\u0C4D\u0C32\u0C3E\u0C21\u0C1F\u0C3E\u0C28\u0C3F\u0C15\u0C3F "Call Farmer" \u0C28\u0C4A\u0C15\u0C4D\u0C15\u0C02\u0C21\u0C3F.',
+        empty_title: '\u0C2A\u0C28\u0C41\u0C32\u0C47\u0C35\u0C40 \u0C15\u0C28\u0C41\u0C17\u0C4A\u0C28\u0C2C\u0C21\u0C32\u0C47\u0C26\u0C41',
+        empty_desc: '\u0C2E\u0C40\u0C30\u0C41 \u0C0E\u0C02\u0C1A\u0C41\u0C15\u0C41\u0C28\u0C4D\u0C28 \u0C35\u0C3F\u0C35\u0C30\u0C3E\u0C32\u0C24\u0C4B \u0C2A\u0C28\u0C41\u0C32\u0C47\u0C35\u0C40 \u0C32\u0C2D\u0C3F\u0C02\u0C1A\u0C32\u0C47\u0C26\u0C41. \u0C26\u0C2F\u0C1A\u0C47\u0C38\u0C3F \u0C15\u0C28\u0C40\u0C38 \u0C15\u0C42\u0C32\u0C40\u0C28\u0C3F \u0C24\u0C17\u0C4D\u0C17\u0C3F\u0C02\u0C1A\u0C02\u0C21\u0C3F.',
+        btn_view_all_jobs: '\u0C05\u0C28\u0C4D\u0C28\u0C3F \u0C2A\u0C28\u0C41\u0C32\u0C28\u0C41 \u0C1A\u0C42\u0C2A\u0C3F\u0C02\u0C1A\u0C41',
+        modal_post_title: '\u0C30\u0C48\u0C24\u0C41 \u0C2A\u0C28\u0C3F \u0C35\u0C3F\u0C35\u0C30\u0C3E\u0C32\u0C41 \u0C28\u0C2E\u0C4B\u0C26\u0C41',
+        modal_post_subtitle: '\u0C2A\u0C02\u0C1F \u0C15\u0C4B\u0C24, \u0C28\u0C3E\u0C1F\u0C4D\u0C32\u0C41 \u0C2E\u0C30\u0C3F\u0C2F\u0C41 \u0C35\u0C4D\u0C2F\u0C35\u0C38\u0C3E\u0C2F \u0C2A\u0C28\u0C41\u0C32 \u0C15\u0C4B\u0C38\u0C02 \u0C15\u0C42\u0C32\u0C40\u0C32\u0C28\u0C41 \u0C28\u0C3F\u0C2F\u0C2E\u0C3F\u0C02\u0C1A\u0C41\u0C15\u0C4B\u0C02\u0C21\u0C3F',
+        form_lbl_title: '\u0C2A\u0C28\u0C3F \u0C2A\u0C47\u0C30\u0C41 / \u0C35\u0C3F\u0C35\u0C30\u0C23',
+        form_lbl_category: '\u0C35\u0C4D\u0C2F\u0C35\u0C38\u0C3E\u0C2F \u0C2A\u0C28\u0C3F \u0C35\u0C30\u0C4D\u0C17\u0C02',
+        form_lbl_wage: '\u0C30\u0C4B\u0C1C\u0C41\u0C35\u0C3E\u0C30\u0C40 \u0C15\u0C42\u0C32\u0C40 (\u0C30\u0C42\u0C2A\u0C3E\u0C2F\u0C32\u0C4D\u0C32\u0C4B)',
+        form_lbl_village: '\u0C17\u0C4D\u0C30\u0C3E\u0C2E\u0C02 \u0C32\u0C47\u0C26\u0C3E \u0C2A\u0C1F\u0C4D\u0C1F\u0C23\u0C02',
+        form_lbl_district: '\u0C1C\u0C3F\u0C32\u0C4D\u0C32\u0C3E',
+        form_lbl_date: '\u0C2A\u0C28\u0C3F \u0C24\u0C47\u0C26\u0C40',
+        form_lbl_workers_count: '\u0C15\u0C3E\u0C35\u0C32\u0C38\u0C3F\u0C28 \u0C15\u0C42\u0C32\u0C40\u0C32 \u0C38\u0C02\u0C16\u0C4D\u0C2F',
+        form_lbl_hours: '\u0C2A\u0C28\u0C3F \u0C35\u0C47\u0C33\u0C32\u0C41',
+        form_lbl_phone: '\u0C38\u0C02\u0C2A\u0C4D\u0C30\u0C26\u0C3F\u0C02\u0C1A\u0C35\u0C32\u0C38\u0C3F\u0C28 \u0C2B\u0C4B\u0C28\u0C4D \u0C28\u0C02\u0C2C\u0C30\u0C4D',
+        form_lbl_farmer_name: '\u0C30\u0C48\u0C24\u0C41 \u0C2A\u0C47\u0C30\u0C41',
+        form_legend_facilities: '\u0C05\u0C02\u0C26\u0C3F\u0C02\u0C1A\u0C47 \u0C38\u0C4C\u0C15\u0C30\u0C4D\u0C2F\u0C3E\u0C32\u0C41 (\u0C10\u0C1A\u0C4D\u0C1B\u0C3F\u0C15\u0C02)',
+        form_lbl_notes: '\u0C17\u0C41\u0C30\u0C4D\u0C24\u0C41 \u0C32\u0C47\u0C26\u0C3E \u0C05\u0C26\u0C28\u0C2A\u0C41 \u0C38\u0C2E\u0C3E\u0C1A\u0C3E\u0C30\u0C02',
+        btn_cancel: '\u0C30\u0C26\u0C4D\u0C26\u0C41 \u0C1A\u0C47\u0C2F\u0C02\u0C21\u0C3F',
+        btn_publish_job: '\u0C2A\u0C28\u0C3F\u0C28\u0C3F \u0C2A\u0C4D\u0C30\u0C1A\u0C41\u0C30\u0C3F\u0C02\u0C1A\u0C02\u0C21\u0C3F',
+        footer_brand: '🌾 \u0C30\u0C48\u0C24\u0C41 \u0C35\u0C30\u0C4D\u0C15\u0C4D \u0C15\u0C28\u0C46\u0C15\u0C4D\u0C1F',
+        footer_about: '\u0C2D\u0C3E\u0C30\u0C24\u0C26\u0C47\u0C36\u0C02\u0C32\u0C4B\u0C28\u0C3F \u0C35\u0C4D\u0C2F\u0C35\u0C38\u0C3E\u0C2F \u0C15\u0C42\u0C32\u0C40\u0C32\u0C41 \u0C2E\u0C30\u0C3F\u0C2F\u0C41 \u0C30\u0C48\u0C24\u0C41\u0C32\u0C15\u0C41 \u0C2A\u0C3E\u0C30\u0C26\u0C30\u0C4D\u0C36\u0C15\u0C2E\u0C48\u0C28 \u0C30\u0C4B\u0C1C\u0C41\u0C35\u0C3E\u0C30\u0C40 \u0C15\u0C42\u0C32\u0C40 \u0C38\u0C2E\u0C3E\u0C1A\u0C3E\u0C30\u0C3E\u0C28\u0C4D\u0C28\u0C3F \u0C05\u0C02\u0C26\u0C3F\u0C38\u0C4D\u0C24\u0C42 \u0C38\u0C3E\u0C27\u0C3F\u0C15\u0C3E\u0C30\u0C24 \u0C1A\u0C47\u0C15\u0C42\u0C30\u0C41\u0C38\u0C4D\u0C24\u0C41\u0C28\u0C4D\u0C28\u0C3E\u0C2E\u0C41.',
+        footer_links_title: '\u0C24\u0C4D\u0C35\u0C30\u0C3F\u0C24 \u0C1A\u0C30\u0C4D\u0C2F\u0C32\u0C41',
+        footer_browse: '\u0C35\u0C4D\u0C2F\u0C35\u0C38\u0C3E\u0C2F \u0C2A\u0C28\u0C41\u0C32\u0C41 \u0C1A\u0C42\u0C21\u0C02\u0C21\u0C3F',
+        footer_post: '\u0C2A\u0C28\u0C3F\u0C28\u0C3F \u0C28\u0C2E\u0C4B\u0C26\u0C41 \u0C1A\u0C47\u0C2F\u0C02\u0C21\u0C3F (\u0C30\u0C48\u0C24\u0C41)',
+        footer_contact_title: '\u0C39\u0C4D\u0C2F\u0C3E\u0C15\u0C25\u0C3E\u0C28\u0C4D \u0C2A\u0C4D\u0C30\u0C4B\u0C1F\u0C4B\u0C1F\u0C48\u0C2A\u0C4D',
+        footer_prototype_info: '\u0C38\u0C4D\u0C35\u0C1A\u0C4D\u0C1B\u0C2E\u0C48\u0C28 HTML, CSS \u0C2E\u0C30\u0C3F\u0C2F\u0C41 \u0C1C\u0C3E\u0C35\u0C3E\u0C38\u0C4D\u0C15\u0C4D\u0C30\u0C3F\u0C2A\u0C4D\u0C1F\u0C4D\u200C\u0C24\u0C4B \u0C28\u0C3F\u0C30\u0C4D\u0C2E\u0C3F\u0C02\u0C1A\u0C2C\u0C21\u0C3F\u0C02\u0C26\u0C3F. \u0C2C\u0C3E\u0C39\u0C4D\u0C2F \u0C38\u0C30\u0C4D\u0C35\u0C30\u0C4D\u0C32\u0C24\u0C4B \u0C2A\u0C28\u0C3F\u0C32\u0C47\u0C26\u0C41.'
+      }
+    };
+
+    // Category labels for UI display
+    const CATEGORY_NAMES = {
+      HARVESTING: { en: 'Paddy Harvesting', te: 'వరి / పంట కోత', icon: '🌾' },
+      TRANSPLANTING: { en: 'Transplanting (Natlu)', te: 'వరి నాట్లు', icon: '🌱' },
+      WEEDING: { en: 'Weeding (Kalupu)', te: 'కలుపు తీయుట', icon: '🌿' },
+      COTTON_PICKING: { en: 'Cotton Picking', te: 'పత్తి ఏరుట', icon: '☁️' },
+      CHILLI_PICKING: { en: 'Chilli Picking', te: 'మిర్చి కోత', icon: '🌶️' },
+      TRACTOR_PLOWING: { en: 'Tractor Work (Dukki)', te: 'ట్రాక్టర్ పని', icon: '🚜' },
+      SPRAYING: { en: 'Spraying Work', te: 'మందు పిచికారీ', icon: '💧' },
+      GENERAL_LABOUR: { en: 'General Farm Labour', te: 'సాధారణ కూలీ పని', icon: '🧑‍🌾' }
+    };
+
+    /* --------------------------------------------------------------------------
+       3. LOCAL STORAGE DATA PERSISTENCE
+       Handles loading existing jobs from localStorage, falling back to demonstration
+       data, and saving newly created farmer jobs to preserve state on page refresh.
+       -------------------------------------------------------------------------- */
+    function loadJobsFromStorage() {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            currentJobsList = parsed;
+            return;
+          }
+        }
+      } catch (err) {
+        console.warn('LocalStorage read error, loading default sample jobs:', err);
+      }
+
+      // If nothing in storage, use default demonstration data
+      currentJobsList = [...INITIAL_SAMPLE_JOBS];
+      saveJobsToStorage();
+    }
+
+    function saveJobsToStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(currentJobsList));
+      } catch (err) {
+        console.error('Failed to save jobs to LocalStorage:', err);
+        showToast('Could not save to browser storage. LocalStorage might be disabled.', 'error');
+      }
+    }
+
+    // Reset everything back to the pristine initial demo dataset
+    function resetToSampleDemoData() {
+      if (confirm('Reset all farm job listings to initial demonstration data? (Newly posted jobs in this browser will be cleared)')) {
+        currentJobsList = [...INITIAL_SAMPLE_JOBS];
+        saveJobsToStorage();
+        applyFiltersAndRender();
+        showToast('Demo data successfully reloaded!', 'success');
+      }
+    }
+
+    /* --------------------------------------------------------------------------
+       4. SECURITY & SANITIZATION (Preventing HTML Injection / XSS)
+       Rural users can enter any village name, notes, or job title.
+       We MUST escape HTML characters (&, <, >, ", ') so malicious scripts
+       can NEVER be executed in the browser.
+       -------------------------------------------------------------------------- */
+    function escapeHTML(str) {
+      if (str === null || str === undefined) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // Format Indian mobile number into standard readable string (e.g. 98480 12345)
+    function formatPhoneNumber(phone) {
+      if (!phone) return '';
+      const cleaned = String(phone).replace(/\D/g, '');
+      if (cleaned.length === 10) {
+        return `${cleaned.substring(0, 5)} ${cleaned.substring(5)}`;
+      }
+      return cleaned;
+    }
+
+    // Format date string (YYYY-MM-DD) into user-friendly localized text
+    function formatDisplayDate(dateStr) {
+      if (!dateStr) return '';
+      try {
+        const parts = dateStr.split('-');
+        if (parts.length === 3) {
+          const year = parseInt(parts[0], 10);
+          const month = parseInt(parts[1], 10) - 1;
+          const day = parseInt(parts[2], 10);
+          const jobDate = new Date(year, month, day);
+
+          // Calculate difference from today
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          const jobDateTime = jobDate.getTime();
+          const todayTime = today.getTime();
+          const oneDay = 24 * 60 * 60 * 1000;
+          const diffDays = Math.round((jobDateTime - todayTime) / oneDay);
+
+          if (diffDays === 0) {
+            return currentLang === 'te' ? 'ఈరోజే (Today)' : 'Today';
+          } else if (diffDays === 1) {
+            return currentLang === 'te' ? 'రేపు (Tomorrow)' : 'Tomorrow';
+          }
+
+          const options = { month: 'short', day: 'numeric', year: 'numeric' };
+          return jobDate.toLocaleDateString('en-IN', options);
+        }
+      } catch (e) {
+        // Fallback to raw string
+      }
+      return dateStr;
+    }
+
+    /* --------------------------------------------------------------------------
+       5. SEARCH, FILTER & SORT ENGINE
+       Implements 100% working live filtering:
+       - By village, town or district search query
+       - By agricultural work category
+       - By minimum daily wage
+       - Sorting by nearest date, wage high-to-low, wage low-to-high, and workers count
+       -------------------------------------------------------------------------- */
+    function getFilteredAndSortedJobs() {
+      const searchInput = document.getElementById('searchLocation');
+      const categorySelect = document.getElementById('filterCategory');
+      const minWageSelect = document.getElementById('filterMinWage');
+      const sortSelect = document.getElementById('sortJobsBy');
+
+      const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : '';
+      const selectedCategory = categorySelect ? categorySelect.value : 'ALL';
+      const minWage = minWageSelect ? parseInt(minWageSelect.value, 10) || 0 : 0;
+      const sortBy = sortSelect ? sortSelect.value : 'date-asc';
+
+      // Step 1: Filter
+      const filtered = currentJobsList.filter(job => {
+        // Location text filter: match against village, district, or job title
+        if (searchTerm) {
+          const matchVillage = (job.village || '').toLowerCase().includes(searchTerm);
+          const matchDistrict = (job.district || '').toLowerCase().includes(searchTerm);
+          const matchTitle = (job.title || '').toLowerCase().includes(searchTerm);
+          const matchFarmer = (job.farmerName || '').toLowerCase().includes(searchTerm);
+
+          if (!matchVillage && !matchDistrict && !matchTitle && !matchFarmer) {
+            return false;
+          }
+        }
+
+        // Category filter
+        if (selectedCategory !== 'ALL' && job.category !== selectedCategory) {
+          return false;
+        }
+
+        // Minimum wage filter
+        if (minWage > 0 && job.dailyWage < minWage) {
+          return false;
+        }
+
+        return true;
+      });
+
+      // Step 2: Sort
+      filtered.sort((a, b) => {
+        if (sortBy === 'wage-desc') {
+          return b.dailyWage - a.dailyWage;
+        } else if (sortBy === 'wage-asc') {
+          return a.dailyWage - b.dailyWage;
+        } else if (sortBy === 'workers-desc') {
+          return b.workersCount - a.workersCount;
+        } else {
+          // Default: date-asc (earliest upcoming date first)
+          const dateA = new Date(a.workDate || '2099-01-01').getTime();
+          const dateB = new Date(b.workDate || '2099-01-01').getTime();
+          return dateA - dateB;
+        }
+      });
+
+      return filtered;
+    }
+
+    /* --------------------------------------------------------------------------
+       6. DYNAMIC UI RENDERING (Job Cards & Platform Statistics)
+       Creates visually appealing, accessible cards with clear rupee wages,
+       facilities chips, and one-tap calling for rural workers.
+       -------------------------------------------------------------------------- */
+    function renderJobCards(jobs) {
+      const container = document.getElementById('jobsGridContainer');
+      const emptyState = document.getElementById('emptyJobsState');
+      const countDisplay = document.getElementById('filteredCount');
+
+      if (!container) return;
+
+      if (countDisplay) {
+        countDisplay.textContent = jobs.length;
+      }
+
+      // If no jobs match the active filters, display the helpful empty message
+      if (jobs.length === 0) {
+        container.innerHTML = '';
+        if (emptyState) emptyState.style.display = 'block';
+        return;
+      }
+
+      if (emptyState) emptyState.style.display = 'none';
+
+      // Build HTML string for each job card safely
+      container.innerHTML = jobs.map(job => {
+        const catInfo = CATEGORY_NAMES[job.category] || {
+          en: job.category || 'Agricultural Work',
+          te: 'వ్యవసాయ పని',
+          icon: '🌾'
+        };
+        const catLabel = catInfo.en;
+
+        // Build facilities chips
+        const facChips = [];
+        if (job.facilities?.food) {
+          facChips.push(`<span class="facility-chip active-chip">🍛 ${currentLang === 'te' ? 'భోజనం' : 'Free Lunch'}</span>`);
+        }
+        if (job.facilities?.water) {
+          facChips.push(`<span class="facility-chip active-chip">💧 ${currentLang === 'te' ? 'మంచినీరు' : 'Clean Water'}</span>`);
+        }
+        if (job.facilities?.transport) {
+          facChips.push(`<span class="facility-chip active-chip">🚜 ${currentLang === 'te' ? 'రవాణా' : 'Transport'}</span>`);
+        }
+        if (job.facilities?.tools) {
+          facChips.push(`<span class="facility-chip active-chip">✂️ ${currentLang === 'te' ? 'పనిముట్లు' : 'Tools Provided'}</span>`);
+        }
+
+        const safePhone = escapeHTML(job.farmerPhone);
+        const formattedPhone = formatPhoneNumber(job.farmerPhone);
+        const callBtnText = currentLang === 'te' ? 'రైతుకు కాల్ చేయండి' : 'Call Farmer';
+        const formattedDate = formatDisplayDate(job.workDate);
+
+        return `
+          <article class="job-card" id="card-${escapeHTML(job.id)}">
+            <div class="card-header">
+              <span class="job-category-tag">
+                <span>${catInfo.icon}</span>
+                <span>${escapeHTML(catLabel)}</span>
+              </span>
+              <span class="job-urgency-tag">
+                ${job.workersCount > 10 ? '🔥 Urgent / Bulk' : 'Open'}
+              </span>
+            </div>
+
+            <h3 class="job-title">${escapeHTML(job.title)}</h3>
+
+            <div class="job-location">
+              <span style="font-size: 1.1rem;">📍</span>
+              <span><strong>${escapeHTML(job.village)}</strong>, ${escapeHTML(job.district)}</span>
+            </div>
+
+            <!-- Bold Daily Wage Callout -->
+            <div class="wage-callout-box">
+              <div>
+                <span style="font-size: 0.72rem; font-weight: 700; color: var(--color-primary-dark); text-transform: uppercase; letter-spacing: 0.05em; display: block;">
+                  ${currentLang === 'te' ? 'రోజువారీ కూలీ' : 'Daily Wage'}
+                </span>
+                <div class="wage-amount-group">
+                  <span class="wage-currency">₹</span>
+                  <span class="wage-number">${escapeHTML(job.dailyWage)}</span>
+                  <span class="wage-unit">/${currentLang === 'te' ? 'రోజుకి' : 'day'}</span>
+                </div>
+              </div>
+              <div class="workers-needed-pill">
+                <span>👥</span>
+                <span><strong>${escapeHTML(job.workersCount)}</strong> ${currentLang === 'te' ? 'కూలీలు' : 'Workers'}</span>
+              </div>
+            </div>
+
+            <!-- Work Timings & Date Details -->
+            <div class="card-meta-list">
+              <div class="meta-row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span><strong>${currentLang === 'te' ? 'తేదీ' : 'Date'}:</strong> ${escapeHTML(formattedDate)}</span>
+              </div>
+              <div class="meta-row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span><strong>${currentLang === 'te' ? 'సమయం' : 'Hours'}:</strong> ${escapeHTML(job.workingHours)}</span>
+              </div>
+            </div>
+
+            <!-- Facilities Provided Chips -->
+            <div>
+              <div class="facilities-title">${currentLang === 'te' ? 'సౌకర్యాలు' : 'Facilities Provided'}</div>
+              <div class="facilities-group">
+                ${facChips.length > 0 ? facChips.join('') : `<span class="facility-chip" style="color: #94a3b8;">${currentLang === 'te' ? 'ప్రామాణిక పొలం సౌకర్యాలు' : 'Standard field facilities'}</span>`}
+              </div>
+            </div>
+
+            ${job.notes ? `
+              <div style="font-size: 0.8rem; color: var(--color-text-muted); background: #f8faf8; padding: 0.5rem 0.65rem; border-radius: var(--radius-sm); margin-bottom: 0.85rem; border-left: 3px solid var(--color-primary-light);">
+                <strong>ℹ️ Note:</strong> ${escapeHTML(job.notes)}
+              </div>
+            ` : ''}
+
+            <!-- Card Footer: Farmer Contact & Call Button -->
+            <div class="card-footer">
+              <div class="farmer-info">
+                <span>Farmer: <span class="farmer-name">${escapeHTML(job.farmerName)}</span></span>
+                <span style="font-family: monospace; font-size: 0.85rem; color: var(--color-text-light);">${escapeHTML(formattedPhone)}</span>
+              </div>
+
+              <div class="card-actions-row">
+                <!-- Clickable Phone Call Link -->
+                <a href="tel:${safePhone}" class="btn-call" title="Call ${escapeHTML(job.farmerName)}">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                  <span>${callBtnText}</span>
+                </a>
+
+                <!-- WhatsApp Direct Message (if valid phone) -->
+                <a
+                  href="https://wa.me/91${safePhone}?text=${encodeURIComponent('Namaste, I saw your farm job listing for ' + job.title + ' on Raithu Work Connect. Are workers still required?')}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-whatsapp"
+                  title="Message on WhatsApp"
+                  aria-label="WhatsApp farmer"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.18 8.18 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24zm4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.23.9 2.43 1.03 2.6.13.17 1.78 2.71 4.31 3.8.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.07-.1-.23-.17-.48-.29z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    // Update the live Hero Statistics counter
+    function updateHeroStatistics() {
+      const activeJobsEl = document.getElementById('statActiveJobs');
+      const workersNeededEl = document.getElementById('statWorkersNeeded');
+      const avgWageEl = document.getElementById('statAvgWage');
+      const villagesCoveredEl = document.getElementById('statVillagesCovered');
+
+      if (!activeJobsEl) return;
+
+      const totalJobs = currentJobsList.length;
+      let totalWorkers = 0;
+      let totalWageSum = 0;
+      const villagesSet = new Set();
+
+      currentJobsList.forEach(job => {
+        totalWorkers += (parseInt(job.workersCount, 10) || 0);
+        totalWageSum += (parseFloat(job.dailyWage) || 0);
+        if (job.village) villagesSet.add(job.village.trim().toLowerCase());
+        if (job.district) villagesSet.add(job.district.trim().toLowerCase());
+      });
+
+      const avgWage = totalJobs > 0 ? Math.round(totalWageSum / totalJobs) : 0;
+
+      activeJobsEl.textContent = totalJobs;
+      workersNeededEl.textContent = totalWorkers;
+      avgWageEl.textContent = `₹${avgWage}`;
+      villagesCoveredEl.textContent = villagesSet.size > 0 ? `${villagesSet.size}+` : '0';
+    }
+
+    // Central function to re-filter and re-render everything
+    function applyFiltersAndRender() {
+      const filteredJobs = getFilteredAndSortedJobs();
+      renderJobCards(filteredJobs);
+      updateHeroStatistics();
+    }
+
+    /* --------------------------------------------------------------------------
+       7. FORM VALIDATION & FARMER JOB POSTING
+       Rigorous, beginner-friendly validation of every required input field.
+       Shows inline error messages under failing fields and creates the new job.
+       -------------------------------------------------------------------------- */
+    function initFarmerPostForm() {
+      const form = document.getElementById('postJobForm');
+      const dateInput = document.getElementById('inputWorkDate');
+
+      // Set date picker minimum to today so farmers cannot post past dates
+      if (dateInput) {
+        const todayStr = getOffsetDate(0);
+        dateInput.min = todayStr;
+        dateInput.value = getOffsetDate(1); // default to tomorrow
+      }
+
+      if (!form) return;
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Retrieve form input elements
+        const titleInput = document.getElementById('inputJobTitle');
+        const categoryInput = document.getElementById('inputCategory');
+        const wageInput = document.getElementById('inputDailyWage');
+        const villageInput = document.getElementById('inputVillage');
+        const districtInput = document.getElementById('inputDistrict');
+        const workDateInput = document.getElementById('inputWorkDate');
+        const workersInput = document.getElementById('inputWorkersCount');
+        const hoursInput = document.getElementById('inputWorkingHours');
+        const phoneInput = document.getElementById('inputFarmerPhone');
+        const nameInput = document.getElementById('inputFarmerName');
+        const notesInput = document.getElementById('inputNotes');
+
+        // Checkbox facilities
+        const facFood = document.getElementById('facFood')?.checked || false;
+        const facWater = document.getElementById('facWater')?.checked || false;
+        const facTransport = document.getElementById('facTransport')?.checked || false;
+        const facTools = document.getElementById('facTools')?.checked || false;
+
+        // Reset previous validation errors
+        let hasErrors = false;
+        let firstInvalidField = null;
+
+        function setFieldError(fieldElement, errorElementId, isError) {
+          const errEl = document.getElementById(errorElementId);
+          if (isError) {
+            fieldElement.classList.add('invalid');
+            if (errEl) errEl.classList.add('visible');
+            hasErrors = true;
+            if (!firstInvalidField) firstInvalidField = fieldElement;
+          } else {
+            fieldElement.classList.remove('invalid');
+            if (errEl) errEl.classList.remove('visible');
+          }
+        }
+
+        // 1. Title validation (min 4 characters)
+        const titleVal = titleInput.value.trim();
+        setFieldError(titleInput, 'errJobTitle', titleVal.length < 4);
+
+        // 2. Category validation (must select an option)
+        const categoryVal = categoryInput.value.trim();
+        setFieldError(categoryInput, 'errCategory', !categoryVal);
+
+        // 3. Daily wage validation (between ₹200 and ₹5000)
+        const wageVal = parseFloat(wageInput.value);
+        setFieldError(wageInput, 'errDailyWage', isNaN(wageVal) || wageVal < 200 || wageVal > 5000);
+
+        // 4. Village validation (min 2 characters)
+        const villageVal = villageInput.value.trim();
+        setFieldError(villageInput, 'errVillage', villageVal.length < 2);
+
+        // 5. District validation (min 2 characters)
+        const districtVal = districtInput.value.trim();
+        setFieldError(districtInput, 'errDistrict', districtVal.length < 2);
+
+        // 6. Work Date validation (not empty and not in the past)
+        const dateVal = workDateInput.value;
+        const todayStr = getOffsetDate(0);
+        setFieldError(workDateInput, 'errWorkDate', !dateVal || dateVal < todayStr);
+
+        // 7. Workers count validation (must be at least 1)
+        const workersVal = parseInt(workersInput.value, 10);
+        setFieldError(workersInput, 'errWorkersCount', isNaN(workersVal) || workersVal < 1);
+
+        // 8. Working hours validation (min 3 characters)
+        const hoursVal = hoursInput.value.trim();
+        setFieldError(hoursInput, 'errWorkingHours', hoursVal.length < 3);
+
+        // 9. Contact phone validation (10 digits starting with 6, 7, 8, or 9)
+        const phoneVal = phoneInput.value.trim();
+        const indianPhoneRegex = /^[6-9]\d{9}$/;
+        setFieldError(phoneInput, 'errFarmerPhone', !indianPhoneRegex.test(phoneVal));
+
+        // 10. Farmer name validation (min 2 characters)
+        const nameVal = nameInput.value.trim();
+        setFieldError(nameInput, 'errFarmerName', nameVal.length < 2);
+
+        // If validation failed, focus on the first bad field and show error alert
+        if (hasErrors) {
+          if (firstInvalidField) firstInvalidField.focus();
+          showToast('Please fix the highlighted fields in red before submitting.', 'error');
+          return;
+        }
+
+        // Construct new job object
+        const newJob = {
+          id: 'job-' + Date.now(),
+          title: titleVal,
+          category: categoryVal,
+          village: villageVal,
+          district: districtVal,
+          dailyWage: wageVal,
+          workDate: dateVal,
+          workersCount: workersVal,
+          workingHours: hoursVal,
+          farmerName: nameVal,
+          farmerPhone: phoneVal,
+          facilities: {
+            food: facFood,
+            water: facWater,
+            transport: facTransport,
+            tools: facTools
+          },
+          notes: notesInput ? notesInput.value.trim() : '',
+          createdAt: new Date().toISOString()
+        };
+
+        // Add to the front of our global jobs array
+        currentJobsList.unshift(newJob);
+
+        // Save to browser LocalStorage so it survives page reloads!
+        saveJobsToStorage();
+
+        // Close the modal dialog
+        closePostJobModal();
+
+        // Reset the form
+        form.reset();
+        if (dateInput) dateInput.value = getOffsetDate(1);
+
+        // Reset filters so the newly posted job is guaranteed to be visible
+        resetFilters(false);
+
+        // Re-render listings
+        applyFiltersAndRender();
+
+        // Confirmation toast
+        showToast('🎉 Farm Job posted successfully! It is now visible to nearby labourers.', 'success');
+
+        // Smooth scroll to the newly posted job card and highlight it
+        setTimeout(() => {
+          const newCard = document.getElementById(`card-${newJob.id}`);
+          if (newCard) {
+            newCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            newCard.classList.add('highlight-new');
+            setTimeout(() => newCard.classList.remove('highlight-new'), 3000);
+          }
+        }, 300);
+      });
+    }
+
+    // Reset all filter controls back to default
+    function resetFilters(showNotification = true) {
+      const searchInput = document.getElementById('searchLocation');
+      const categorySelect = document.getElementById('filterCategory');
+      const minWageSelect = document.getElementById('filterMinWage');
+      const sortSelect = document.getElementById('sortJobsBy');
+
+      if (searchInput) searchInput.value = '';
+      if (categorySelect) categorySelect.value = 'ALL';
+      if (minWageSelect) minWageSelect.value = '0';
+      if (sortSelect) sortSelect.value = 'date-asc';
+
+      // Reset category pills
+      document.querySelectorAll('.cat-pill').forEach(pill => {
+        if (pill.dataset.category === 'ALL') {
+          pill.classList.add('active');
+        } else {
+          pill.classList.remove('active');
+        }
+      });
+
+      applyFiltersAndRender();
+
+      if (showNotification) {
+        showToast('All search filters reset.', 'success');
+      }
+    }
+
+    /* --------------------------------------------------------------------------
+       8. NOTIFICATION TOAST UTILITY
+       Displays non-intrusive floating confirmation alerts.
+       -------------------------------------------------------------------------- */
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = `toast toast-${type}`;
+      const icon = type === 'success' ? '✅' : type === 'error' ? '⚠️' : 'ℹ️';
+
+      toast.innerHTML = `
+        <span class="toast-icon">${icon}</span>
+        <div style="font-size: 0.9rem; font-weight: 600;">${escapeHTML(message)}</div>
+      `;
+
+      container.appendChild(toast);
+
+      // Auto dismiss after 4 seconds
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(12px)';
+        setTimeout(() => toast.remove(), 300);
+      }, 4000);
+    }
+
+    /* --------------------------------------------------------------------------
+       MODAL CONTROLS (Open & Close)
+       -------------------------------------------------------------------------- */
+    function openPostJobModal() {
+      const modal = document.getElementById('postJobModal');
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // prevent background scrolling
+        const firstInput = document.getElementById('inputJobTitle');
+        if (firstInput) setTimeout(() => firstInput.focus(), 150);
+      }
+    }
+
+    function closePostJobModal() {
+      const modal = document.getElementById('postJobModal');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    /* --------------------------------------------------------------------------
+       LANGUAGE TOGGLING (English <-> Telugu)
+       Applies translations across all data-i18n elements in real time.
+       -------------------------------------------------------------------------- */
+    function setLanguage(lang) {
+      currentLang = lang;
+      try {
+        localStorage.setItem(LANG_STORAGE_KEY, lang);
+      } catch (e) {}
+
+      const dict = I18N_DICTIONARY[lang] || I18N_DICTIONARY.en;
+
+      // Update all DOM elements with data-i18n attribute
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.innerHTML = dict[key];
+        }
+      });
+
+      // Update language toggle button label
+      const langLabel = document.getElementById('langLabel');
+      if (langLabel) {
+        langLabel.textContent = lang === 'en' ? 'తెలుగు (Telugu)' : 'English';
+      }
+
+      // Re-render job listings with updated language strings
+      applyFiltersAndRender();
+    }
+
+    function toggleLanguage() {
+      const newLang = currentLang === 'en' ? 'te' : 'en';
+      setLanguage(newLang);
+      showToast(newLang === 'te' ? 'Switched language to Telugu' : 'Switched language to English', 'success');
+    }
+
+    /* --------------------------------------------------------------------------
+       9. EVENT LISTENERS & APPLICATION INITIALIZATION
+       Wires up all interactive buttons, inputs, modals, and keyboard shortcuts.
+       -------------------------------------------------------------------------- */
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Load language preference
+      try {
+        const savedLang = localStorage.getItem(LANG_STORAGE_KEY);
+        if (savedLang === 'te' || savedLang === 'en') {
+          currentLang = savedLang;
+        }
+      } catch (e) {}
+
+      // 2. Load stored jobs or fallback to demo data
+      loadJobsFromStorage();
+
+      // 3. Apply initial language & render jobs
+      setLanguage(currentLang);
+
+      // 4. Initialize Farmer Form validation
+      initFarmerPostForm();
+
+      // Set current copyright year
+      const yearEl = document.getElementById('currentYear');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // Wire up Filter Inputs (Live search on typing or changing dropdowns)
+      const searchLocationInput = document.getElementById('searchLocation');
+      if (searchLocationInput) {
+        searchLocationInput.addEventListener('input', () => applyFiltersAndRender());
+      }
+
+      const filterCategorySelect = document.getElementById('filterCategory');
+      if (filterCategorySelect) {
+        filterCategorySelect.addEventListener('change', (e) => {
+          // Sync quick category pills
+          const selectedVal = e.target.value;
+          document.querySelectorAll('.cat-pill').forEach(pill => {
+            pill.classList.toggle('active', pill.dataset.category === selectedVal);
+          });
+          applyFiltersAndRender();
+        });
+      }
+
+      const filterMinWageSelect = document.getElementById('filterMinWage');
+      if (filterMinWageSelect) {
+        filterMinWageSelect.addEventListener('change', () => applyFiltersAndRender());
+      }
+
+      const sortJobsBySelect = document.getElementById('sortJobsBy');
+      if (sortJobsBySelect) {
+        sortJobsBySelect.addEventListener('change', () => applyFiltersAndRender());
+      }
+
+      // Wire up Quick Category Pills
+      document.querySelectorAll('.cat-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+
+          const category = pill.dataset.category || 'ALL';
+          const catDropdown = document.getElementById('filterCategory');
+          if (catDropdown) catDropdown.value = category;
+
+          applyFiltersAndRender();
+        });
+      });
+
+      // Clear Filters Buttons
+      const resetFiltersBtn = document.getElementById('resetFiltersBtn');
+      if (resetFiltersBtn) {
+        resetFiltersBtn.addEventListener('click', () => resetFilters(true));
+      }
+
+      const emptyResetBtn = document.getElementById('emptyResetBtn');
+      if (emptyResetBtn) {
+        emptyResetBtn.addEventListener('click', () => resetFilters(true));
+      }
+
+      // Language Switch Button
+      const langToggleBtn = document.getElementById('langToggleBtn');
+      if (langToggleBtn) {
+        langToggleBtn.addEventListener('click', toggleLanguage);
+      }
+
+      // Modal Open Buttons
+      const navPostBtn = document.getElementById('navPostJobBtn');
+      if (navPostBtn) navPostBtn.addEventListener('click', openPostJobModal);
+
+      const heroPostBtn = document.getElementById('heroPostJobBtn');
+      if (heroPostBtn) heroPostBtn.addEventListener('click', openPostJobModal);
+
+      const footerPostBtn = document.getElementById('footerPostJobBtn');
+      if (footerPostBtn) footerPostBtn.addEventListener('click', openPostJobModal);
+
+      // Modal Close Buttons
+      const modalCloseBtn = document.getElementById('modalCloseBtn');
+      if (modalCloseBtn) modalCloseBtn.addEventListener('click', closePostJobModal);
+
+      const modalCancelBtn = document.getElementById('modalCancelBtn');
+      if (modalCancelBtn) modalCancelBtn.addEventListener('click', closePostJobModal);
+
+      // Click outside modal dialog to dismiss
+      const postJobModal = document.getElementById('postJobModal');
+      if (postJobModal) {
+        postJobModal.addEventListener('click', (e) => {
+          if (e.target === postJobModal) {
+            closePostJobModal();
+          }
+        });
+      }
+
+      // Close modal on Escape key press
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closePostJobModal();
+        }
+      });
+
+      // Reload Demo Data Button in Footer
+      const footerResetDemoBtn = document.getElementById('footerResetDemoBtn');
+      if (footerResetDemoBtn) {
+        footerResetDemoBtn.addEventListener('click', resetToSampleDemoData);
+      }
+    });
+  </script>
+</body>
+</html>
